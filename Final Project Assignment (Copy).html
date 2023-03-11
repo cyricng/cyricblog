@@ -175,20 +175,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"title"</span>: <span class="st">"Final Project Assignment"</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"author"</span>: <span class="st">"Cyric Ng"</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"date"</span>: <span class="st">"2022-03-11"</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"description"</span>: <span class="st">"The copy of my final related assignment"</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<pre><code>{'title': 'Final Project Assignment',
- 'author': 'Cyric Ng',
- 'date': '2022-03-11',
- 'description': 'The copy of my final related assignment'}</code></pre>
-</div>
-</div>
+<p>{ “title”: “Final Project Assignment”, “author”: “Cyric Ng”, “date”: “2022-03-11”, “description”: “The copy of my final related assignment” }</p>
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <p>With standard of living rising all over the world and more people moving to cities, buildings are getting taller and taller. Not only do skyscrapers provide retail, office, and living spaces for people, some have even become attractions being known for the height. This project seeks to answer several main questions about skyscraper and their locations. What building type allows for more height? And does the demographic of the state/county (such as median household income, per capita income, land area, mean travel time to work, etc.) correpsond to the number of skyscrapers developed in a specific county?</p>
@@ -202,18 +189,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="exploration-of-data-set" class="level1">
 <h1>Exploration of Data Set</h1>
 <div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> stats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> stats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>state_dem_og <span class="op">=</span> pd.read_csv(<span class="st">'https://corgis-edu.github.io/corgis/datasets/csv/state_demographics/state_demographics.csv'</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>county_dem_og <span class="op">=</span> pd.read_csv(<span class="st">'https://corgis-edu.github.io/corgis/datasets/csv/county_demographics/county_demographics.csv'</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>sky_og <span class="op">=</span> pd.read_csv(<span class="st">'https://corgis-edu.github.io/corgis/datasets/csv/skyscrapers/skyscrapers.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>state_dem_og <span class="op">=</span> pd.read_csv(<span class="st">'https://corgis-edu.github.io/corgis/datasets/csv/state_demographics/state_demographics.csv'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>county_dem_og <span class="op">=</span> pd.read_csv(<span class="st">'https://corgis-edu.github.io/corgis/datasets/csv/county_demographics/county_demographics.csv'</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>sky_og <span class="op">=</span> pd.read_csv(<span class="st">'https://corgis-edu.github.io/corgis/datasets/csv/skyscrapers/skyscrapers.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-scrolled="true" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sky_og</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sky_og</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 
 <div>
@@ -517,27 +504,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="cell" data-scrolled="true" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>material<span class="op">=</span> sky_og[<span class="st">'material'</span>].value_counts()</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>material.plot(kind<span class="op">=</span><span class="st">'bar'</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>material<span class="op">=</span> sky_og[<span class="st">'material'</span>].value_counts()</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>material.plot(kind<span class="op">=</span><span class="st">'bar'</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Final Project Assignment (Copy)_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-scrolled="true" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>material<span class="op">=</span> sky_og[<span class="st">'status.current'</span>].value_counts()</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>material.plot(kind<span class="op">=</span><span class="st">'bar'</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="Final Project Assignment (Copy)_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-scrolled="true" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>material<span class="op">=</span> sky_og[<span class="st">'status.current'</span>].value_counts()</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>material.plot(kind<span class="op">=</span><span class="st">'bar'</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="Final Project Assignment (Copy)_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
-</div>
-</div>
 <div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>sky_fix <span class="op">=</span> (sky_og[<span class="st">'status.current'</span>] <span class="op">!=</span> <span class="st">'proposed'</span>) <span class="op">&amp;</span> (sky_og[<span class="st">'status.current'</span>] <span class="op">!=</span> <span class="st">'vision'</span>) <span class="op">&amp;</span> (sky_og[<span class="st">'status.current'</span>] <span class="op">!=</span> <span class="st">'never completed'</span>) <span class="op">&amp;</span> (sky_og[<span class="st">'status.current'</span>] <span class="op">!=</span> <span class="st">'achitercturally topped out'</span>) <span class="op">&amp;</span> (sky_og[<span class="st">'status.current'</span>] <span class="op">!=</span> <span class="st">'demolished'</span>) <span class="op">&amp;</span> (sky_og[<span class="st">'status.current'</span>] <span class="op">!=</span> <span class="st">'structurally topped out'</span>)<span class="op">&amp;</span> (sky_og[<span class="st">'status.current'</span>] <span class="op">!=</span> <span class="st">'on hold'</span>)<span class="op">&amp;</span>(sky_og[<span class="st">'statistics.height'</span>] <span class="op">!=</span> <span class="st">'0.000000'</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>sky <span class="op">=</span> sky_og[sky_fix]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sky_fix <span class="op">=</span> (sky_og[<span class="st">'status.current'</span>] <span class="op">!=</span> <span class="st">'proposed'</span>) <span class="op">&amp;</span> (sky_og[<span class="st">'status.current'</span>] <span class="op">!=</span> <span class="st">'vision'</span>) <span class="op">&amp;</span> (sky_og[<span class="st">'status.current'</span>] <span class="op">!=</span> <span class="st">'never completed'</span>) <span class="op">&amp;</span> (sky_og[<span class="st">'status.current'</span>] <span class="op">!=</span> <span class="st">'achitercturally topped out'</span>) <span class="op">&amp;</span> (sky_og[<span class="st">'status.current'</span>] <span class="op">!=</span> <span class="st">'demolished'</span>) <span class="op">&amp;</span> (sky_og[<span class="st">'status.current'</span>] <span class="op">!=</span> <span class="st">'structurally topped out'</span>)<span class="op">&amp;</span> (sky_og[<span class="st">'status.current'</span>] <span class="op">!=</span> <span class="st">'on hold'</span>)<span class="op">&amp;</span>(sky_og[<span class="st">'statistics.height'</span>] <span class="op">!=</span> <span class="st">'0.000000'</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sky <span class="op">=</span> sky_og[sky_fix]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-scrolled="true" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sky</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sky</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 
 <div>
@@ -841,18 +828,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>height <span class="op">=</span> pd.DataFrame({<span class="st">'height'</span>: sky[<span class="st">'statistics.height'</span>], <span class="st">'index'</span>: sky.index})</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>height.plot(kind<span class="op">=</span><span class="st">'scatter'</span>, x<span class="op">=</span><span class="st">'index'</span>, y<span class="op">=</span><span class="st">'height'</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Skyscraper Heights'</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Height (m)'</span>)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>height <span class="op">=</span> pd.DataFrame({<span class="st">'height'</span>: sky[<span class="st">'statistics.height'</span>], <span class="st">'index'</span>: sky.index})</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>height.plot(kind<span class="op">=</span><span class="st">'scatter'</span>, x<span class="op">=</span><span class="st">'index'</span>, y<span class="op">=</span><span class="st">'height'</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Skyscraper Heights'</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Height (m)'</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Final Project Assignment (Copy)_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
+<p><img src="Final Project Assignment (Copy)_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>state_dem_og.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>state_dem_og.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 
 <div>
@@ -1012,37 +999,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="cell" data-scrolled="true" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>travel <span class="op">=</span> state_dem_og[<span class="st">'Miscellaneous.Mean Travel Time to Work'</span>]</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>travel.plot(kind<span class="op">=</span><span class="st">'bar'</span>, x<span class="op">=</span><span class="st">'State'</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>travel <span class="op">=</span> state_dem_og[<span class="st">'Miscellaneous.Mean Travel Time to Work'</span>]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>travel.plot(kind<span class="op">=</span><span class="st">'bar'</span>, x<span class="op">=</span><span class="st">'State'</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Final Project Assignment (Copy)_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
+<p><img src="Final Project Assignment (Copy)_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dem_fix <span class="op">=</span> (state_dem_og[<span class="st">'State'</span>] <span class="op">!=</span> <span class="st">'District of Columbia'</span>)   </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>state_dem <span class="op">=</span> state_dem_og[dem_fix]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dem_fix <span class="op">=</span> (state_dem_og[<span class="st">'State'</span>] <span class="op">!=</span> <span class="st">'District of Columbia'</span>)   </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>state_dem <span class="op">=</span> state_dem_og[dem_fix]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-scrolled="true" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>travel <span class="op">=</span> state_dem[<span class="st">'Population.Population per Square Mile'</span>]</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>travel.plot(kind<span class="op">=</span><span class="st">'bar'</span>, x<span class="op">=</span><span class="st">'State'</span>)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>travel <span class="op">=</span> state_dem[<span class="st">'Population.Population per Square Mile'</span>]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>travel.plot(kind<span class="op">=</span><span class="st">'bar'</span>, x<span class="op">=</span><span class="st">'State'</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Final Project Assignment (Copy)_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>cities <span class="op">=</span> sky[<span class="st">'location.city'</span>].value_counts()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>cities.plot(kind<span class="op">=</span><span class="st">'bar'</span>, width<span class="op">=</span><span class="fl">1.2</span>, figsize<span class="op">=</span>(<span class="dv">20</span>,<span class="dv">3</span>))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="Final Project Assignment (Copy)_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>cities <span class="op">=</span> sky[<span class="st">'location.city'</span>].value_counts()</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>cities.plot(kind<span class="op">=</span><span class="st">'bar'</span>, width<span class="op">=</span><span class="fl">1.2</span>, figsize<span class="op">=</span>(<span class="dv">20</span>,<span class="dv">3</span>))</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="Final Project Assignment (Copy)_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
-</div>
-</div>
 <div class="cell" data-scrolled="true" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sky.loc[sky[<span class="st">'location.city'</span>].isin([<span class="st">'Miami'</span>, <span class="st">'Miami Beach'</span>, <span class="st">'Sunny Isles Beach'</span>]), <span class="st">'location.city'</span>] <span class="op">=</span> <span class="st">'Miami Area'</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>top_cities <span class="op">=</span> sky[<span class="st">'location.city'</span>].value_counts().nlargest(<span class="dv">35</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>top_cities</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sky.loc[sky[<span class="st">'location.city'</span>].isin([<span class="st">'Miami'</span>, <span class="st">'Miami Beach'</span>, <span class="st">'Sunny Isles Beach'</span>]), <span class="st">'location.city'</span>] <span class="op">=</span> <span class="st">'Miami Area'</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>top_cities <span class="op">=</span> sky[<span class="st">'location.city'</span>].value_counts().nlargest(<span class="dv">35</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>top_cities</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>New York City     586
 Chicago           385
@@ -1086,44 +1073,44 @@ Name: location.city, dtype: int64</code></pre>
 <section id="analysis" class="level1">
 <h1>Analysis</h1>
 <div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>cities_states <span class="op">=</span> {</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'New York'</span>: [<span class="st">'New York City'</span>],</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Illinois'</span>: [<span class="st">'Chicago'</span>],</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Florida'</span>: [<span class="st">'Miami Area'</span>],</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'California'</span>: [<span class="st">'San Francisco'</span>, <span class="st">'Los Angeles'</span>, <span class="st">'San Diego'</span>, <span class="st">'Sacramento'</span>],</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Texas'</span>: [<span class="st">'Houston'</span>, <span class="st">'Dallas'</span>, <span class="st">'Austin'</span>],</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Hawaii'</span>: [<span class="st">'Honolulu'</span>],</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Nevada'</span>: [<span class="st">'Las Vegas'</span>],</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Minnesota'</span>: [<span class="st">'Minneapolis'</span>],</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Pennsylvania'</span>: [<span class="st">'Pittsburgh'</span>, <span class="st">'Philadelphia'</span>],</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Georgia'</span>: [<span class="st">'Atlanta'</span>],</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Massachusetts'</span>: [<span class="st">'Boston'</span>],</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Ohio'</span>: [<span class="st">'Cleveland'</span>, <span class="st">'Columbus'</span>],</span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Arizona'</span>: [<span class="st">'Phoenix'</span>],</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Maryland'</span>: [<span class="st">'Baltimore'</span>],</span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Indiana'</span>: [<span class="st">'Indianapolis'</span>],</span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Utah'</span>: [<span class="st">'Salt Lake City'</span>],</span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Missouri'</span>: [<span class="st">'St. Louis'</span>, <span class="st">'Kansas City'</span>],</span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Wisconsin'</span>: [<span class="st">'Milwaukee'</span>],</span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Michigan'</span>: [<span class="st">'Detroit'</span>],</span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">'North Carolina'</span>: [<span class="st">'Charlotte'</span>],</span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Tennessee'</span>: [<span class="st">'Nashville'</span>],</span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Oregon'</span>: [<span class="st">'Portland'</span>],</span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Colorado'</span>: [<span class="st">'Denver'</span>],</span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Louisiana'</span>:[<span class="st">'New Orleans'</span>]</span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>cities_states <span class="op">=</span> {</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'New York'</span>: [<span class="st">'New York City'</span>],</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Illinois'</span>: [<span class="st">'Chicago'</span>],</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Florida'</span>: [<span class="st">'Miami Area'</span>],</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'California'</span>: [<span class="st">'San Francisco'</span>, <span class="st">'Los Angeles'</span>, <span class="st">'San Diego'</span>, <span class="st">'Sacramento'</span>],</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Texas'</span>: [<span class="st">'Houston'</span>, <span class="st">'Dallas'</span>, <span class="st">'Austin'</span>],</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Hawaii'</span>: [<span class="st">'Honolulu'</span>],</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Nevada'</span>: [<span class="st">'Las Vegas'</span>],</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Minnesota'</span>: [<span class="st">'Minneapolis'</span>],</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Pennsylvania'</span>: [<span class="st">'Pittsburgh'</span>, <span class="st">'Philadelphia'</span>],</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Georgia'</span>: [<span class="st">'Atlanta'</span>],</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Massachusetts'</span>: [<span class="st">'Boston'</span>],</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Ohio'</span>: [<span class="st">'Cleveland'</span>, <span class="st">'Columbus'</span>],</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Arizona'</span>: [<span class="st">'Phoenix'</span>],</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Maryland'</span>: [<span class="st">'Baltimore'</span>],</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Indiana'</span>: [<span class="st">'Indianapolis'</span>],</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Utah'</span>: [<span class="st">'Salt Lake City'</span>],</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Missouri'</span>: [<span class="st">'St. Louis'</span>, <span class="st">'Kansas City'</span>],</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Wisconsin'</span>: [<span class="st">'Milwaukee'</span>],</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Michigan'</span>: [<span class="st">'Detroit'</span>],</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">'North Carolina'</span>: [<span class="st">'Charlotte'</span>],</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Tennessee'</span>: [<span class="st">'Nashville'</span>],</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Oregon'</span>: [<span class="st">'Portland'</span>],</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Colorado'</span>: [<span class="st">'Denver'</span>],</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Louisiana'</span>:[<span class="st">'New Orleans'</span>]</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-scrolled="true" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>grouped_cities <span class="op">=</span> {}</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> city, count <span class="kw">in</span> top_cities.items():</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> state, cities <span class="kw">in</span> cities_states.items():</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> city <span class="kw">in</span> cities:</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> state <span class="kw">in</span> grouped_cities:</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>                grouped_cities[state] <span class="op">+=</span> count</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>                grouped_cities[state] <span class="op">=</span> count</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>grouped_cities</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>grouped_cities <span class="op">=</span> {}</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> city, count <span class="kw">in</span> top_cities.items():</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> state, cities <span class="kw">in</span> cities_states.items():</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> city <span class="kw">in</span> cities:</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> state <span class="kw">in</span> grouped_cities:</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>                grouped_cities[state] <span class="op">+=</span> count</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>                grouped_cities[state] <span class="op">=</span> count</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>grouped_cities</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>{'New York': 586,
  'Illinois': 385,
@@ -1152,81 +1139,81 @@ Name: location.city, dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>top_states <span class="op">=</span> ((state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'New York'</span>)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Illinois'</span>) </span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Florida'</span>)</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'California'</span>)</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Texas'</span>)</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Hawaii'</span>)</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Nevada'</span>)</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Georgia'</span>)</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Minnesota'</span>)</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Massachusetts'</span>)</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Pennsylvania'</span>)</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Michigan'</span>)</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Ohio'</span>)</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Arizona'</span>)</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Maryland'</span>)</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Indiana'</span>)</span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Utah'</span>)</span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Wisconsin'</span>)</span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Colorado'</span>)</span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Tennessee'</span>)</span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'North Carolina'</span>)</span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Louisiana'</span>))</span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>top_dem <span class="op">=</span> state_dem[top_states]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>top_states <span class="op">=</span> ((state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'New York'</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Illinois'</span>) </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Florida'</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'California'</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Texas'</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Hawaii'</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Nevada'</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Georgia'</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Minnesota'</span>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Massachusetts'</span>)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Pennsylvania'</span>)</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Michigan'</span>)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Ohio'</span>)</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Arizona'</span>)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Maryland'</span>)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Indiana'</span>)</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Utah'</span>)</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Wisconsin'</span>)</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Colorado'</span>)</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Tennessee'</span>)</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'North Carolina'</span>)</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> (state_dem[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Louisiana'</span>))</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>top_dem <span class="op">=</span> state_dem[top_states]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>cities_states_df <span class="op">=</span> pd.DataFrame(grouped_cities.items(), columns<span class="op">=</span>[<span class="st">'State'</span>, <span class="st">'Skyscraper'</span>])</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>merged_df <span class="op">=</span> pd.merge(state_dem, cities_states_df, on<span class="op">=</span><span class="st">'State'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>cities_states_df <span class="op">=</span> pd.DataFrame(grouped_cities.items(), columns<span class="op">=</span>[<span class="st">'State'</span>, <span class="st">'Skyscraper'</span>])</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>merged_df <span class="op">=</span> pd.merge(state_dem, cities_states_df, on<span class="op">=</span><span class="st">'State'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>merged_df.plot(kind<span class="op">=</span><span class="st">'scatter'</span>, x<span class="op">=</span><span class="st">'Population.Population per Square Mile'</span>, y<span class="op">=</span><span class="st">'Skyscraper'</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> merged_df[<span class="st">'Population.Population per Square Mile'</span>]</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> merged_df[<span class="st">'Skyscraper'</span>]</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>slope, intercept <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>)</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>line <span class="op">=</span> slope <span class="op">*</span> x <span class="op">+</span> intercept</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>plt.plot(x, line, color<span class="op">=</span><span class="st">'red'</span>)</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'State Population per square Mile vs. Skyscrapers'</span>)</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Population Density'</span>)</span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>merged_df.plot(kind<span class="op">=</span><span class="st">'scatter'</span>, x<span class="op">=</span><span class="st">'Population.Population per Square Mile'</span>, y<span class="op">=</span><span class="st">'Skyscraper'</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> merged_df[<span class="st">'Population.Population per Square Mile'</span>]</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> merged_df[<span class="st">'Skyscraper'</span>]</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>slope, intercept <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>line <span class="op">=</span> slope <span class="op">*</span> x <span class="op">+</span> intercept</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>plt.plot(x, line, color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'State Population per square Mile vs. Skyscrapers'</span>)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Population Density'</span>)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Final Project Assignment (Copy)_files/figure-html/cell-21-output-1.png" class="img-fluid"></p>
+<p><img src="Final Project Assignment (Copy)_files/figure-html/cell-20-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>cities_county <span class="op">=</span> {</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'New York'</span>: [<span class="st">'New York City'</span>],</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Illinois'</span>: [<span class="st">'Chicago'</span>],</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Florida'</span>: [<span class="st">'Miami Area'</span>],</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'California'</span>: [<span class="st">'San Francisco'</span>, <span class="st">'Los Angeles'</span>, <span class="st">'San Diego'</span>, <span class="st">'Sacramento'</span>],</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Texas'</span>: [<span class="st">'Houston'</span>, <span class="st">'Dallas'</span>, <span class="st">'Austin'</span>],</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Hawaii'</span>: [<span class="st">'Honolulu'</span>],</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Nevada'</span>: [<span class="st">'Las Vegas'</span>],</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Minnesota'</span>: [<span class="st">'Minneapolis'</span>],</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Pennsylvania'</span>: [<span class="st">'Pittsburgh'</span>, <span class="st">'Philadelphia'</span>],</span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Georgia'</span>: [<span class="st">'Atlanta'</span>],</span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Massachusetts'</span>: [<span class="st">'Boston'</span>],</span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Ohio'</span>: [<span class="st">'Cleveland'</span>, <span class="st">'Columbus'</span>],</span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Arizona'</span>: [<span class="st">'Phoenix'</span>],</span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Maryland'</span>: [<span class="st">'Baltimore'</span>],</span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Indiana'</span>: [<span class="st">'Indianapolis'</span>],</span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Utah'</span>: [<span class="st">'Salt Lake City'</span>],</span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Missouri'</span>: [<span class="st">'St. Louis'</span>, <span class="st">'Kansas City'</span>],</span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Wisconsin'</span>: [<span class="st">'Milwaukee'</span>],</span>
-<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Michigan'</span>: [<span class="st">'Detroit'</span>],</span>
-<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">'North Carolina'</span>: [<span class="st">'Charlotte'</span>],</span>
-<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Tennessee'</span>: [<span class="st">'Nashville'</span>],</span>
-<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Oregon'</span>: [<span class="st">'Portland'</span>],</span>
-<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Colorado'</span>: [<span class="st">'Denver'</span>],</span>
-<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Louisiana'</span>:[<span class="st">'New Orleans'</span>]</span>
-<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>cities_county <span class="op">=</span> {</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'New York'</span>: [<span class="st">'New York City'</span>],</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Illinois'</span>: [<span class="st">'Chicago'</span>],</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Florida'</span>: [<span class="st">'Miami Area'</span>],</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'California'</span>: [<span class="st">'San Francisco'</span>, <span class="st">'Los Angeles'</span>, <span class="st">'San Diego'</span>, <span class="st">'Sacramento'</span>],</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Texas'</span>: [<span class="st">'Houston'</span>, <span class="st">'Dallas'</span>, <span class="st">'Austin'</span>],</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Hawaii'</span>: [<span class="st">'Honolulu'</span>],</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Nevada'</span>: [<span class="st">'Las Vegas'</span>],</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Minnesota'</span>: [<span class="st">'Minneapolis'</span>],</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Pennsylvania'</span>: [<span class="st">'Pittsburgh'</span>, <span class="st">'Philadelphia'</span>],</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Georgia'</span>: [<span class="st">'Atlanta'</span>],</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Massachusetts'</span>: [<span class="st">'Boston'</span>],</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Ohio'</span>: [<span class="st">'Cleveland'</span>, <span class="st">'Columbus'</span>],</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Arizona'</span>: [<span class="st">'Phoenix'</span>],</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Maryland'</span>: [<span class="st">'Baltimore'</span>],</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Indiana'</span>: [<span class="st">'Indianapolis'</span>],</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Utah'</span>: [<span class="st">'Salt Lake City'</span>],</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Missouri'</span>: [<span class="st">'St. Louis'</span>, <span class="st">'Kansas City'</span>],</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Wisconsin'</span>: [<span class="st">'Milwaukee'</span>],</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Michigan'</span>: [<span class="st">'Detroit'</span>],</span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">'North Carolina'</span>: [<span class="st">'Charlotte'</span>],</span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Tennessee'</span>: [<span class="st">'Nashville'</span>],</span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Oregon'</span>: [<span class="st">'Portland'</span>],</span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Colorado'</span>: [<span class="st">'Denver'</span>],</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Louisiana'</span>:[<span class="st">'New Orleans'</span>]</span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>county_dem_og.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>county_dem_og.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 
 <div>
@@ -1386,61 +1373,61 @@ Name: location.city, dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>cities_county <span class="op">=</span> {</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'New York County'</span>: <span class="st">'New York City'</span>,</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Kings County'</span>: <span class="st">'New York City'</span>,</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Bronx County'</span>: <span class="st">'New York City'</span>,</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Richmond County'</span>: <span class="st">'New York City'</span>,</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Queens County'</span>: <span class="st">'New York City'</span>,</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Cook County'</span>: <span class="st">'Chicago'</span>,</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Miami-Dade County'</span>: <span class="st">'Miami Area'</span>,</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'San Francisco County'</span>: <span class="st">'San Francisco'</span>,</span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Los Angeles County'</span>: <span class="st">'Los Angeles'</span>,</span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'San Diego County'</span>: <span class="st">'San Diego'</span>,</span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Sacramento County'</span>: <span class="st">'Sacramento'</span>,</span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Harris County'</span>: <span class="st">'Houston'</span>,</span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Fort Bend County'</span>: <span class="st">'Houston'</span>,</span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Montgomery County'</span>: <span class="st">'Houston'</span>,</span>
-<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Dallas County'</span>: <span class="st">'Dallas'</span>,</span>
-<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Collin County'</span>: <span class="st">'Dallas'</span>,</span>
-<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Denton County'</span>: <span class="st">'Dallas'</span>,</span>
-<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Kaufman County'</span>: <span class="st">'Dallas'</span>,</span>
-<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Rockwall County'</span>: <span class="st">'Dallas'</span>,</span>
-<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Travis County'</span>: <span class="st">'Austin'</span>,</span>
-<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Hays County'</span>: <span class="st">'Austin'</span>,</span>
-<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Williamson County'</span>: <span class="st">'Austin'</span>,</span>
-<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Honolulu County'</span>: <span class="st">'Honolulu'</span>,</span>
-<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Clark County'</span>: <span class="st">'Las Vegas'</span>,</span>
-<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Hennepin County'</span>: <span class="st">'Minneapolis'</span>,</span>
-<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Allegheny County'</span>:<span class="st">'Pittsburgh'</span>,</span>
-<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Philadelphia County'</span>: <span class="st">'Philadelphia'</span>,</span>
-<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Fulton County'</span>: <span class="st">'Atlanta'</span>,</span>
-<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">'DeKalb County'</span>: <span class="st">'Atlanta'</span>,</span>
-<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Suffolk County'</span>: <span class="st">'Boston'</span>,</span>
-<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Cuyahoga County'</span>: <span class="st">'Cleveland'</span>,</span>
-<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Franklin County'</span>: <span class="st">'Columbus'</span>,</span>
-<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Delaware County'</span>: <span class="st">'Columbus'</span>,</span>
-<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Maricopa County'</span>: <span class="st">'Phoenix'</span>,</span>
-<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Baltimore city'</span>: <span class="st">'Baltimore'</span>,</span>
-<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Marion County'</span>: <span class="st">'Indianapolis'</span>,</span>
-<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Salt Lake County'</span>: <span class="st">'Salt Lake City'</span>,</span>
-<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>    <span class="st">'St. Louis County'</span>: <span class="st">'St. Louis'</span>,</span>
-<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Milwaukee County'</span>: <span class="st">'Milwaukee'</span>,</span>
-<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Wayne County'</span>: <span class="st">'Detroit'</span>,</span>
-<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Mecklenburg County'</span>: <span class="st">'Charlotte'</span>,</span>
-<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Davidson County'</span>: <span class="st">'Nashville'</span>,</span>
-<span id="cb26-44"><a href="#cb26-44" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Multnomah County'</span>: <span class="st">'Portland'</span>,</span>
-<span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Denver County'</span>: <span class="st">'Denver'</span>,</span>
-<span id="cb26-46"><a href="#cb26-46" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Jackson County'</span> : <span class="st">'Kansas City'</span>,</span>
-<span id="cb26-47"><a href="#cb26-47" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Orleans Parish'</span>:<span class="st">'New Orleans'</span></span>
-<span id="cb26-48"><a href="#cb26-48" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>cities_county <span class="op">=</span> {</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'New York County'</span>: <span class="st">'New York City'</span>,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Kings County'</span>: <span class="st">'New York City'</span>,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Bronx County'</span>: <span class="st">'New York City'</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Richmond County'</span>: <span class="st">'New York City'</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Queens County'</span>: <span class="st">'New York City'</span>,</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Cook County'</span>: <span class="st">'Chicago'</span>,</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Miami-Dade County'</span>: <span class="st">'Miami Area'</span>,</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'San Francisco County'</span>: <span class="st">'San Francisco'</span>,</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Los Angeles County'</span>: <span class="st">'Los Angeles'</span>,</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'San Diego County'</span>: <span class="st">'San Diego'</span>,</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Sacramento County'</span>: <span class="st">'Sacramento'</span>,</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Harris County'</span>: <span class="st">'Houston'</span>,</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Fort Bend County'</span>: <span class="st">'Houston'</span>,</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Montgomery County'</span>: <span class="st">'Houston'</span>,</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Dallas County'</span>: <span class="st">'Dallas'</span>,</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Collin County'</span>: <span class="st">'Dallas'</span>,</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Denton County'</span>: <span class="st">'Dallas'</span>,</span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Kaufman County'</span>: <span class="st">'Dallas'</span>,</span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Rockwall County'</span>: <span class="st">'Dallas'</span>,</span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Travis County'</span>: <span class="st">'Austin'</span>,</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Hays County'</span>: <span class="st">'Austin'</span>,</span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Williamson County'</span>: <span class="st">'Austin'</span>,</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Honolulu County'</span>: <span class="st">'Honolulu'</span>,</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Clark County'</span>: <span class="st">'Las Vegas'</span>,</span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Hennepin County'</span>: <span class="st">'Minneapolis'</span>,</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Allegheny County'</span>:<span class="st">'Pittsburgh'</span>,</span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Philadelphia County'</span>: <span class="st">'Philadelphia'</span>,</span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Fulton County'</span>: <span class="st">'Atlanta'</span>,</span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">'DeKalb County'</span>: <span class="st">'Atlanta'</span>,</span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Suffolk County'</span>: <span class="st">'Boston'</span>,</span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Cuyahoga County'</span>: <span class="st">'Cleveland'</span>,</span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Franklin County'</span>: <span class="st">'Columbus'</span>,</span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Delaware County'</span>: <span class="st">'Columbus'</span>,</span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Maricopa County'</span>: <span class="st">'Phoenix'</span>,</span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Baltimore city'</span>: <span class="st">'Baltimore'</span>,</span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Marion County'</span>: <span class="st">'Indianapolis'</span>,</span>
+<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Salt Lake County'</span>: <span class="st">'Salt Lake City'</span>,</span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a>    <span class="st">'St. Louis County'</span>: <span class="st">'St. Louis'</span>,</span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Milwaukee County'</span>: <span class="st">'Milwaukee'</span>,</span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Wayne County'</span>: <span class="st">'Detroit'</span>,</span>
+<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Mecklenburg County'</span>: <span class="st">'Charlotte'</span>,</span>
+<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Davidson County'</span>: <span class="st">'Nashville'</span>,</span>
+<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Multnomah County'</span>: <span class="st">'Portland'</span>,</span>
+<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Denver County'</span>: <span class="st">'Denver'</span>,</span>
+<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Jackson County'</span> : <span class="st">'Kansas City'</span>,</span>
+<span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Orleans Parish'</span>:<span class="st">'New Orleans'</span></span>
+<span id="cb24-48"><a href="#cb24-48" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>cities_county_df <span class="op">=</span> pd.DataFrame(cities_county.items(), columns<span class="op">=</span>[<span class="st">'County'</span>, <span class="st">'City'</span>])</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>county_m<span class="op">=</span> pd.merge(county_dem_og, cities_county_df, on<span class="op">=</span><span class="st">'County'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>cities_county_df <span class="op">=</span> pd.DataFrame(cities_county.items(), columns<span class="op">=</span>[<span class="st">'County'</span>, <span class="st">'City'</span>])</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>county_m<span class="op">=</span> pd.merge(county_dem_og, cities_county_df, on<span class="op">=</span><span class="st">'County'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>county_m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>county_m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="24">
 
 <div>
@@ -1744,151 +1731,151 @@ Name: location.city, dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>county_fix <span class="op">=</span> ((county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'PA'</span>) <span class="op">&amp;</span> (county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Allegheny County'</span>) </span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'PA'</span>) <span class="op">&amp;</span> (county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Philadelphia County'</span>) </span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'NY'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'New York County'</span>)</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'NY'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Bronx County'</span>)</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'NY'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Kings County'</span>)</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'NY'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Queens County'</span>)</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'NY'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Cook County'</span>)</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'TX'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Harris County'</span>)</span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'TX'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Fort Bend County'</span>)</span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'TX'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Montgomery County'</span>)</span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'TX'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Dallas County'</span>)</span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'TX'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Collin County'</span>)</span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'TX'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Denton County'</span>)</span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'TX'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Kaufman County'</span>)</span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'TX'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Rockwall County'</span>)</span>
-<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'TX'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Travis County'</span>)</span>
-<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'TX'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Hays County'</span>)</span>
-<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'TX'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Williamson County'</span>)</span>
-<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'CA'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Sacramento County'</span>)</span>
-<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'CA'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Los Angeles County'</span>)</span>
-<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'CA'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'San Francisco County'</span>)</span>
-<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'CA'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'San Diego County'</span>)</span>
-<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'FL'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Miami-Dade County'</span>)</span>
-<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'NC'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Mecklenburg County'</span>)</span>
-<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'OH'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Cuyahoga County'</span>)</span>
-<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'OH'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Franklin County'</span>)</span>
-<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'OH'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Delaware County'</span>)</span>
-<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'MD'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Baltimore city'</span>)</span>
-<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'IL'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Cook County'</span>)</span>
-<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'MO'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'St. Louis County'</span>)</span>
-<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'HI'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Honolulu County'</span>)</span>
-<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'OR'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Multnomah County County'</span>)</span>
-<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'NV'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Clark County'</span>)</span>
-<span id="cb29-34"><a href="#cb29-34" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'CO'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Denver County'</span>)</span>
-<span id="cb29-35"><a href="#cb29-35" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'TN'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Davidson County'</span>)</span>
-<span id="cb29-36"><a href="#cb29-36" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'AZ'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Maricopa County'</span>)</span>
-<span id="cb29-37"><a href="#cb29-37" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'MN'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Hennepin County'</span>)</span>
-<span id="cb29-38"><a href="#cb29-38" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'WI'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Milwaukee County'</span>)</span>
-<span id="cb29-39"><a href="#cb29-39" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'MA'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Suffolk County'</span>)</span>
-<span id="cb29-40"><a href="#cb29-40" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'GA'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Fulton County'</span>)</span>
-<span id="cb29-41"><a href="#cb29-41" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'GA'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'DeKalb County'</span>)</span>
-<span id="cb29-42"><a href="#cb29-42" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'IN'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Marion County'</span>)</span>
-<span id="cb29-43"><a href="#cb29-43" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'UT'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Salt Lake County'</span>)</span>
-<span id="cb29-44"><a href="#cb29-44" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'MI'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Wayne County'</span>)</span>
-<span id="cb29-45"><a href="#cb29-45" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'MO'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Jackson County'</span>)</span>
-<span id="cb29-46"><a href="#cb29-46" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'LA'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Orleans Parish'</span>))</span>
-<span id="cb29-47"><a href="#cb29-47" aria-hidden="true" tabindex="-1"></a>              </span>
-<span id="cb29-48"><a href="#cb29-48" aria-hidden="true" tabindex="-1"></a>county_sky <span class="op">=</span> county_m[county_fix]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>county_fix <span class="op">=</span> ((county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'PA'</span>) <span class="op">&amp;</span> (county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Allegheny County'</span>) </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'PA'</span>) <span class="op">&amp;</span> (county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Philadelphia County'</span>) </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'NY'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'New York County'</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'NY'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Bronx County'</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'NY'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Kings County'</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'NY'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Queens County'</span>)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'NY'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Cook County'</span>)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'TX'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Harris County'</span>)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'TX'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Fort Bend County'</span>)</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'TX'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Montgomery County'</span>)</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'TX'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Dallas County'</span>)</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'TX'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Collin County'</span>)</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'TX'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Denton County'</span>)</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'TX'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Kaufman County'</span>)</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'TX'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Rockwall County'</span>)</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'TX'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Travis County'</span>)</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'TX'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Hays County'</span>)</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'TX'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Williamson County'</span>)</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'CA'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Sacramento County'</span>)</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'CA'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Los Angeles County'</span>)</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'CA'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'San Francisco County'</span>)</span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'CA'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'San Diego County'</span>)</span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'FL'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Miami-Dade County'</span>)</span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'NC'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Mecklenburg County'</span>)</span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'OH'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Cuyahoga County'</span>)</span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'OH'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Franklin County'</span>)</span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'OH'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Delaware County'</span>)</span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'MD'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Baltimore city'</span>)</span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'IL'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Cook County'</span>)</span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'MO'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'St. Louis County'</span>)</span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'HI'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Honolulu County'</span>)</span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'OR'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Multnomah County County'</span>)</span>
+<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'NV'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Clark County'</span>)</span>
+<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'CO'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Denver County'</span>)</span>
+<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'TN'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Davidson County'</span>)</span>
+<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'AZ'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Maricopa County'</span>)</span>
+<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'MN'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Hennepin County'</span>)</span>
+<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'WI'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Milwaukee County'</span>)</span>
+<span id="cb27-39"><a href="#cb27-39" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'MA'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Suffolk County'</span>)</span>
+<span id="cb27-40"><a href="#cb27-40" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'GA'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Fulton County'</span>)</span>
+<span id="cb27-41"><a href="#cb27-41" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'GA'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'DeKalb County'</span>)</span>
+<span id="cb27-42"><a href="#cb27-42" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'IN'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Marion County'</span>)</span>
+<span id="cb27-43"><a href="#cb27-43" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'UT'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Salt Lake County'</span>)</span>
+<span id="cb27-44"><a href="#cb27-44" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'MI'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Wayne County'</span>)</span>
+<span id="cb27-45"><a href="#cb27-45" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'MO'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Jackson County'</span>)</span>
+<span id="cb27-46"><a href="#cb27-46" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span>(county_m[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'LA'</span>)<span class="op">&amp;</span>(county_m[<span class="st">'County'</span>] <span class="op">==</span> <span class="st">'Orleans Parish'</span>))</span>
+<span id="cb27-47"><a href="#cb27-47" aria-hidden="true" tabindex="-1"></a>              </span>
+<span id="cb27-48"><a href="#cb27-48" aria-hidden="true" tabindex="-1"></a>county_sky <span class="op">=</span> county_m[county_fix]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>top_cities_df <span class="op">=</span> pd.DataFrame(top_cities.items(), columns<span class="op">=</span>[<span class="st">'City'</span>, <span class="st">'Skyscrapers'</span>])</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>county_with_sky<span class="op">=</span> pd.merge(county_sky, top_cities_df, on<span class="op">=</span><span class="st">'City'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>top_cities_df <span class="op">=</span> pd.DataFrame(top_cities.items(), columns<span class="op">=</span>[<span class="st">'City'</span>, <span class="st">'Skyscrapers'</span>])</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>county_with_sky<span class="op">=</span> pd.merge(county_sky, top_cities_df, on<span class="op">=</span><span class="st">'City'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">13</span>, <span class="dv">8</span>))</span>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">13</span>, <span class="dv">8</span>))</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> county_with_sky[<span class="st">'Population.Population per Square Mile'</span>]</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> county_with_sky[<span class="st">'Skyscrapers'</span>]</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'County Population per square Mile vs. Skyscrapers'</span>)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Population Density'</span>)</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> county_with_sky.iterrows():</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    county <span class="op">=</span> row[<span class="st">'County'</span>]</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> row[<span class="st">'Population.Population per Square Mile'</span>]</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> row[<span class="st">'Skyscrapers'</span>]</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    ax.annotate(county, xy<span class="op">=</span>(x, y), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Final Project Assignment (Copy)_files/figure-html/cell-28-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">13</span>, <span class="dv">8</span>))</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> county_with_sky[<span class="st">'Income.Per Capita Income'</span>]</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> county_with_sky[<span class="st">'Skyscrapers'</span>]</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Income.Per Capita Income vs. Skyscrapers'</span>)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Income.Per Capita Income'</span>)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> county_with_sky.iterrows():</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    county <span class="op">=</span> row[<span class="st">'County'</span>]</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> row[<span class="st">'Income.Per Capita Income'</span>]</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> row[<span class="st">'Skyscrapers'</span>]</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>    ax.annotate(county, xy<span class="op">=</span>(x, y), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Final Project Assignment (Copy)_files/figure-html/cell-29-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">13</span>, <span class="dv">6</span>))</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> county_with_sky[<span class="st">'Population.Population per Square Mile'</span>]</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> county_with_sky[<span class="st">'Miscellaneous.Mean Travel Time to Work'</span>]</span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> county_with_sky[<span class="st">'Skyscrapers'</span>]</span>
 <span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y)</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'County Population per square Mile vs. Skyscrapers'</span>)</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Population Density'</span>)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Miscellaneous.Mean Travel Time to Work vs. Skyscrapers'</span>)</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Income.Per Capita Income'</span>)</span>
 <span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
 <span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> county_with_sky.iterrows():</span>
 <span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    county <span class="op">=</span> row[<span class="st">'County'</span>]</span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> row[<span class="st">'Population.Population per Square Mile'</span>]</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> row[<span class="st">'Miscellaneous.Mean Travel Time to Work'</span>]</span>
 <span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> row[<span class="st">'Skyscrapers'</span>]</span>
 <span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>    ax.annotate(county, xy<span class="op">=</span>(x, y), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
 <span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Final Project Assignment (Copy)_files/figure-html/cell-29-output-1.png" class="img-fluid"></p>
+<p><img src="Final Project Assignment (Copy)_files/figure-html/cell-30-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">13</span>, <span class="dv">8</span>))</span>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">13</span>, <span class="dv">6</span>))</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> county_with_sky[<span class="st">'Income.Per Capita Income'</span>]</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> county_with_sky[<span class="st">'Population.2020 Population'</span>]</span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> county_with_sky[<span class="st">'Skyscrapers'</span>]</span>
 <span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y)</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Income.Per Capita Income vs. Skyscrapers'</span>)</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Income.Per Capita Income'</span>)</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Population.2020 Population vs. Skyscrapers'</span>)</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Population.2020 Population'</span>)</span>
 <span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
 <span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> county_with_sky.iterrows():</span>
 <span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    county <span class="op">=</span> row[<span class="st">'County'</span>]</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> row[<span class="st">'Income.Per Capita Income'</span>]</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> row[<span class="st">'Population.2020 Population'</span>]</span>
 <span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> row[<span class="st">'Skyscrapers'</span>]</span>
 <span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>    ax.annotate(county, xy<span class="op">=</span>(x, y), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
 <span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Final Project Assignment (Copy)_files/figure-html/cell-30-output-1.png" class="img-fluid"></p>
-</div>
-</div>
-<div class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">13</span>, <span class="dv">6</span>))</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> county_with_sky[<span class="st">'Miscellaneous.Mean Travel Time to Work'</span>]</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> county_with_sky[<span class="st">'Skyscrapers'</span>]</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y)</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Miscellaneous.Mean Travel Time to Work vs. Skyscrapers'</span>)</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Income.Per Capita Income'</span>)</span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> county_with_sky.iterrows():</span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>    county <span class="op">=</span> row[<span class="st">'County'</span>]</span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> row[<span class="st">'Miscellaneous.Mean Travel Time to Work'</span>]</span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> row[<span class="st">'Skyscrapers'</span>]</span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>    ax.annotate(county, xy<span class="op">=</span>(x, y), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
 <p><img src="Final Project Assignment (Copy)_files/figure-html/cell-31-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">13</span>, <span class="dv">6</span>))</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> county_with_sky[<span class="st">'Population.2020 Population'</span>]</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> county_with_sky[<span class="st">'Skyscrapers'</span>]</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y)</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Population.2020 Population vs. Skyscrapers'</span>)</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Population.2020 Population'</span>)</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> county_with_sky.iterrows():</span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>    county <span class="op">=</span> row[<span class="st">'County'</span>]</span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> row[<span class="st">'Population.2020 Population'</span>]</span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> row[<span class="st">'Skyscrapers'</span>]</span>
-<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>    ax.annotate(county, xy<span class="op">=</span>(x, y), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
-<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>sky.plot(column<span class="op">=</span><span class="st">'statistics.height'</span>, by<span class="op">=</span><span class="st">'material'</span>,ax<span class="op">=</span>ax, kind<span class="op">=</span><span class="st">'box'</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Material'</span>)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Height'</span>)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="Final Project Assignment (Copy)_files/figure-html/cell-32-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>sky.plot(column<span class="op">=</span><span class="st">'statistics.height'</span>, by<span class="op">=</span><span class="st">'material'</span>,ax<span class="op">=</span>ax, kind<span class="op">=</span><span class="st">'box'</span>)</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Material'</span>)</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Height'</span>)</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="Final Project Assignment (Copy)_files/figure-html/cell-33-output-1.png" class="img-fluid"></p>
-</div>
-</div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
