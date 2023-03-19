@@ -209,433 +209,233 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>```{r}</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>code<span class="op">-</span>fold: true</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>code<span class="op">-</span>summary: <span class="st">"Show the code"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre><code>
-::: {.cell-output .cell-output-error}</code></pre>
-<p>SyntaxError: invalid syntax (1232752893.py, line 1)</p>
-<pre><code>:::
-:::
-
-
-# 1. Introduction
-
-With the standard of living rising all over the world and more people moving to cities, buildings are getting taller and taller. In The Atlantic's "How Skyscrapers Can Save a City", many benefits of these sky-rise cities were mentioned. Skyscrapers can make cities more affordable and make cities greener, compared to urban sprawl (Glaesar, 2011). As many cities across the U.S. are trying close off roads, improve bike lanes, and create more pedestrian-friendly areas, building skyscrapers can help congregate more people at these locations. An example is New York City, which is one of the cities with the most skyscrapers in the world, recently closed off a busy road on Broadway to create room for pedestrians. My biggest motivation for this project comes from my background growing up in Hong Kong. Hong Kong is the city with the most skyscrapers in the world and coming to the United States shocked me with how few skyscrapers there are. Skyscrapers provide the convenience of linking commercial, retail, and living spaces together.  While big cities in the U.S. have skyscrapers, the numbers compared to cities in Asia are still astoundingly low. All across the world, not only do skyscrapers provide retail, office, and living spaces for people, but some have even become attractions known for their height. The increase in skyscrapers can potentially solve problems such as housing inequality occurring in many major U.S. cities such as New York City and San Francisco (Florida, 2016). This project seeks to answer several main questions about skyscrapers and their locations. While this is focused on U.S. cities, the results will still provide an interesting relationship between people and skyscrapers. This project revolves around one main topic, which is how the demographic of U.S. cities corresponds with skyscrapers. Prior studies have looked at the density of skyscrapers within 2km of the downtown area, but not the entire city and other demographic variables (The Council on Tall Buildings and Urban Habitat). Using these demographic measures, we can uncover if there is a relationship between both and whether skyscrapers are "going to save the city".
-
-# 2. Methods
-
-**2.1 - Data** 
-
-This project uses two main data sets: skyscrapers and census data sets for each city. The skyscrapers data set is provided and organized by the CORGIS Dataset Project. Updated data and data for more cities could be found on the Council on Tall Buildings and Urban Habitat, where the CORGIS data set collected the information; however, membership of the group is needed to access and download the data. For this project, the CORGIS dataset provides enough information for the analysis. The skyscraper dataset includes information on each skyscraper in the U.S., which the height, material of the building, the city location, the location latitude and longitude, the name of the building, the year completed, and whether it is completed or still in the visionary process. This data set is used in Excel to be created as new data set to include only skyscrapers that are completed, under construction, and have a height above 0 m. Additional clean-ups to reduce other variables were done using Python in this notebook.
-
-The second data set used is from Census. CORGIS data sets provided county and state data, which was originally the aim of this project. However, further analysis showed that many cities of interest crossed over to several counties which made it difficult for the data to work with. In order to only focus on the cities, specific data for each city were pulled from Census and combined into one file. Since a maximum of six cities can be pulled each time, a total of thirty cities were chosen for this study. This is also valid since the top thirty cities were focused as cities after the top thirty did not have that many skyscrapers to provide a well-established analysis.
-
-*Skyscraper Data Set* :
-https://corgis-edu.github.io/corgis/csv/skyscrapers/
-
-
-*Cities Demographics Data Set* :
-https://www.census.gov/quickfacts/fact/table/US/PST045222
-
-**2.2 - Analytical Process**
-
-The project will be split into two analytical parts, with one small supplementary analysis to introduce the history of skyscrapers and the second part will be to analyze the relationship between skyscrapers and humans. Although it is not the main focus of the project, a small part of the analysis of skyscrapers will be analyzed to see the changes through time. As skyscrapers become taller, the changes in building materials will be looked at to see if there is a trend as well. A map of all the provided skyscrapers in the data set will be separated into layers by height to show the overall spatial distribution of skyscrapers in the U.S., which is made using folium.  Additionally, the materials will be analyzed in a box plot to visualize the relationship between height and materials.  
-
-The main part of the analysis is to uncover the relationship between skyscrapers and population. The number of skyscrapers in each city will be the main focus. As mentioned, the top thirty cities will be focused on since cities after had very few skyscrapers. Out of our cities of interest, the least is Cinnicinati with 13 skyscrapers, and the most is New York City with 586 skyscrapers. The number of skyscrapers in each city is compared with the population, population per square mile, median household income, owner-occupied housing rate, median gross rent, and mean travel time to work. This project focuses on these demographic areas since it can see if the number of skyscrapers correlates with the demographic behaviors of a population. Some of these variables are the main drivers of people living in cities such as rent, owner housing rate, and travel time to work. One of the biggest conceptions of living in cities with skyscrapers is convenience; however, travel time to work will uncover if this is true or a misconception. Additionally, are people living in cities with more skyscrapers having a higher income or lower income? Since many of these variables are crucial, they will be used for the analysis process through scatter plots to find the relationship between the two. Scatter plots will be made using matplotlib.pyplot. Furthermore, the trend (negative/positive/no trend) will be analyzed with the R-squared to determine if there are strong relationships between the number of skyscrapers and specific variables of interest. The correlation and r2 will be calculated using scipy.stats.  
-
-
-# 3. Results
-
-**3.1 - Data Exploration**
-
-::: {.cell execution_count=6}
-``` {.python .cell-code}
-import numpy as np
-import matplotlib.pyplot as plt
-import pandas as pd
-from scipy.stats import linregress
-import folium</code></pre>
+<section id="introduction" class="level1">
+<h1>1. Introduction</h1>
+<p>With the standard of living rising all over the world and more people moving to cities, buildings are getting taller and taller. In The Atlantic’s “How Skyscrapers Can Save a City”, many benefits of these sky-rise cities were mentioned. Skyscrapers can make cities more affordable and make cities greener, compared to urban sprawl (Glaesar, 2011). As many cities across the U.S. are trying close off roads, improve bike lanes, and create more pedestrian-friendly areas, building skyscrapers can help congregate more people at these locations. An example is New York City, which is one of the cities with the most skyscrapers in the world, recently closed off a busy road on Broadway to create room for pedestrians. My biggest motivation for this project comes from my background growing up in Hong Kong. Hong Kong is the city with the most skyscrapers in the world and coming to the United States shocked me with how few skyscrapers there are. Skyscrapers provide the convenience of linking commercial, retail, and living spaces together. While big cities in the U.S. have skyscrapers, the numbers compared to cities in Asia are still astoundingly low. All across the world, not only do skyscrapers provide retail, office, and living spaces for people, but some have even become attractions known for their height. The increase in skyscrapers can potentially solve problems such as housing inequality occurring in many major U.S. cities such as New York City and San Francisco (Florida, 2016). This project seeks to answer several main questions about skyscrapers and their locations. While this is focused on U.S. cities, the results will still provide an interesting relationship between people and skyscrapers. This project revolves around one main topic, which is how the demographic of U.S. cities corresponds with skyscrapers. Prior studies have looked at the density of skyscrapers within 2km of the downtown area, but not the entire city and other demographic variables (The Council on Tall Buildings and Urban Habitat). Using these demographic measures, we can uncover if there is a relationship between both and whether skyscrapers are “going to save the city”.</p>
+</section>
+<section id="methods" class="level1">
+<h1>2. Methods</h1>
+<p><strong>2.1 - Data</strong></p>
+<p>This project uses two main data sets: skyscrapers and census data sets for each city. The skyscrapers data set is provided and organized by the CORGIS Dataset Project. Updated data and data for more cities could be found on the Council on Tall Buildings and Urban Habitat, where the CORGIS data set collected the information; however, membership of the group is needed to access and download the data. For this project, the CORGIS dataset provides enough information for the analysis. The skyscraper dataset includes information on each skyscraper in the U.S., which the height, material of the building, the city location, the location latitude and longitude, the name of the building, the year completed, and whether it is completed or still in the visionary process. This data set is used in Excel to be created as new data set to include only skyscrapers that are completed, under construction, and have a height above 0 m. Additional clean-ups to reduce other variables were done using Python in this notebook.</p>
+<p>The second data set used is from Census. CORGIS data sets provided county and state data, which was originally the aim of this project. However, further analysis showed that many cities of interest crossed over to several counties which made it difficult for the data to work with. In order to only focus on the cities, specific data for each city were pulled from Census and combined into one file. Since a maximum of six cities can be pulled each time, a total of thirty cities were chosen for this study. This is also valid since the top thirty cities were focused as cities after the top thirty did not have that many skyscrapers to provide a well-established analysis.</p>
+<p><em>Skyscraper Data Set</em> : https://corgis-edu.github.io/corgis/csv/skyscrapers/</p>
+<p><em>Cities Demographics Data Set</em> : https://www.census.gov/quickfacts/fact/table/US/PST045222</p>
+<p><strong>2.2 - Analytical Process</strong></p>
+<p>The project will be split into two analytical parts, with one small supplementary analysis to introduce the history of skyscrapers and the second part will be to analyze the relationship between skyscrapers and humans. Although it is not the main focus of the project, a small part of the analysis of skyscrapers will be analyzed to see the changes through time. As skyscrapers become taller, the changes in building materials will be looked at to see if there is a trend as well. A map of all the provided skyscrapers in the data set will be separated into layers by height to show the overall spatial distribution of skyscrapers in the U.S., which is made using folium. Additionally, the materials will be analyzed in a box plot to visualize the relationship between height and materials.</p>
+<p>The main part of the analysis is to uncover the relationship between skyscrapers and population. The number of skyscrapers in each city will be the main focus. As mentioned, the top thirty cities will be focused on since cities after had very few skyscrapers. Out of our cities of interest, the least is Cinnicinati with 13 skyscrapers, and the most is New York City with 586 skyscrapers. The number of skyscrapers in each city is compared with the population, population per square mile, median household income, owner-occupied housing rate, median gross rent, and mean travel time to work. This project focuses on these demographic areas since it can see if the number of skyscrapers correlates with the demographic behaviors of a population. Some of these variables are the main drivers of people living in cities such as rent, owner housing rate, and travel time to work. One of the biggest conceptions of living in cities with skyscrapers is convenience; however, travel time to work will uncover if this is true or a misconception. Additionally, are people living in cities with more skyscrapers having a higher income or lower income? Since many of these variables are crucial, they will be used for the analysis process through scatter plots to find the relationship between the two. Scatter plots will be made using matplotlib.pyplot. Furthermore, the trend (negative/positive/no trend) will be analyzed with the R-squared to determine if there are strong relationships between the number of skyscrapers and specific variables of interest. The correlation and r2 will be calculated using scipy.stats.</p>
+</section>
+<section id="results" class="level1">
+<h1>3. Results</h1>
+<p><strong>3.1 - Data Exploration</strong></p>
+<pre class="{r}"><code>#| code-fold: true
+#| code-summary: "Show the code"</code></pre>
+<div class="cell" data-execution_count="6">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> linregress</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
+<pre class="{r}"><code>#| code-fold: true
+#| code-summary: "Show the code"</code></pre>
 <div class="cell" data-execution_count="8">
+<details>
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sky_og <span class="op">=</span> pd.read_csv(<span class="st">'https://corgis-edu.github.io/corgis/datasets/csv/skyscrapers/skyscrapers.csv'</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>cities_dem <span class="op">=</span> pd.read_csv(<span class="st">'/home/jovyan/DH140_Final_Project/City Census Values.csv'</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>sky_com <span class="op">=</span> pd.read_csv(<span class="st">'/home/jovyan/DH140_Final_Project/skyscrapers_completed.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell">
+<details>
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sky_fix <span class="op">=</span> (sky_og[<span class="st">'status.current'</span>] <span class="op">!=</span> <span class="st">'proposed'</span>) <span class="op">&amp;</span> (sky_og[<span class="st">'status.current'</span>] <span class="op">!=</span> <span class="st">'vision'</span>) <span class="op">&amp;</span> (sky_og[<span class="st">'status.current'</span>] <span class="op">!=</span> <span class="st">'never completed'</span>) <span class="op">&amp;</span> (sky_og[<span class="st">'status.current'</span>] <span class="op">!=</span> <span class="st">'achitercturally topped out'</span>) <span class="op">&amp;</span> (sky_og[<span class="st">'status.current'</span>] <span class="op">!=</span> <span class="st">'demolished'</span>) <span class="op">&amp;</span> (sky_og[<span class="st">'status.current'</span>] <span class="op">!=</span> <span class="st">'structurally topped out'</span>)<span class="op">&amp;</span> (sky_og[<span class="st">'status.current'</span>] <span class="op">!=</span> <span class="st">'on hold'</span>)<span class="op">&amp;</span>(sky_og[<span class="st">'statistics.height'</span>] <span class="op">!=</span> <span class="st">'0.000000'</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sky <span class="op">=</span> sky_og[sky_fix]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell">
+<details>
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sky_100 <span class="op">=</span> sky_com.loc[sky_com[<span class="st">'statistics.height'</span>] <span class="op">&lt;=</span> <span class="dv">100</span>]</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sky_101_150 <span class="op">=</span> sky_com.loc[(sky_com[<span class="st">'statistics.height'</span>] <span class="op">&gt;</span><span class="dv">100</span>) <span class="op">&amp;</span>(sky_com[<span class="st">'statistics.height'</span>] <span class="op">&lt;=</span><span class="dv">150</span>)]</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>sky_151_200 <span class="op">=</span> sky_com.loc[(sky_com[<span class="st">'statistics.height'</span>] <span class="op">&gt;</span><span class="dv">150</span>) <span class="op">&amp;</span>(sky_com[<span class="st">'statistics.height'</span>] <span class="op">&lt;=</span><span class="dv">200</span>)]</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>sky_200_300 <span class="op">=</span> sky_com.loc[(sky_com[<span class="st">'statistics.height'</span>] <span class="op">&gt;</span><span class="dv">200</span>) <span class="op">&amp;</span>(sky_com[<span class="st">'statistics.height'</span>] <span class="op">&lt;=</span><span class="dv">300</span>)]</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>sky_300p <span class="op">=</span> sky_com.loc[sky_com[<span class="st">'statistics.height'</span>] <span class="op">&gt;</span> <span class="dv">300</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<pre class="{r}"><code>#| code-fold: true
+#| code-summary: "Show the code"</code></pre>
+<div class="cell" data-execution_count="4">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> folium.Map(location<span class="op">=</span>[sky[<span class="st">'location.latitude'</span>].astype(<span class="bu">float</span>).mean(), sky[<span class="st">'location.longitude'</span>].astype(<span class="bu">float</span>).mean()], zoom_start<span class="op">=</span><span class="dv">6</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>fg_100 <span class="op">=</span> folium.FeatureGroup(name<span class="op">=</span><span class="st">"100m or less"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>fg_101_150 <span class="op">=</span> folium.FeatureGroup(name<span class="op">=</span><span class="st">"101m - 150m"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>fg_151_200 <span class="op">=</span> folium.FeatureGroup(name<span class="op">=</span><span class="st">"151m - 200m"</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>fg_200_300 <span class="op">=</span> folium.FeatureGroup(name<span class="op">=</span><span class="st">"201m - 300m"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>fg_300p <span class="op">=</span> folium.FeatureGroup(name<span class="op">=</span><span class="st">"Over 300m"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, row <span class="kw">in</span> sky_100.iterrows():</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    lat <span class="op">=</span> <span class="bu">float</span>(row[<span class="st">'location.latitude'</span>])</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    lng <span class="op">=</span> <span class="bu">float</span>(row[<span class="st">'location.longitude'</span>])</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> row[<span class="st">'name'</span>]</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    folium.Marker(location<span class="op">=</span>[lat, lng],popup<span class="op">=</span>name).add_to(fg_100)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, row <span class="kw">in</span> sky_101_150.iterrows():</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    lat <span class="op">=</span> <span class="bu">float</span>(row[<span class="st">'location.latitude'</span>])</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    lng <span class="op">=</span> <span class="bu">float</span>(row[<span class="st">'location.longitude'</span>])</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> row[<span class="st">'name'</span>]</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    folium.Marker(location<span class="op">=</span>[lat, lng],popup<span class="op">=</span>name).add_to(fg_101_150)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, row <span class="kw">in</span> sky_151_200.iterrows():</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    lat <span class="op">=</span> <span class="bu">float</span>(row[<span class="st">'location.latitude'</span>])</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    lng <span class="op">=</span> <span class="bu">float</span>(row[<span class="st">'location.longitude'</span>])</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> row[<span class="st">'name'</span>]</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    folium.Marker(location<span class="op">=</span>[lat, lng],popup<span class="op">=</span>name).add_to(fg_151_200)</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, row <span class="kw">in</span> sky_200_300.iterrows():</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    lat <span class="op">=</span> <span class="bu">float</span>(row[<span class="st">'location.latitude'</span>])</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    lng <span class="op">=</span> <span class="bu">float</span>(row[<span class="st">'location.longitude'</span>])</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> row[<span class="st">'name'</span>]</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    folium.Marker(location<span class="op">=</span>[lat, lng], popup<span class="op">=</span>name).add_to(fg_200_300)</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, row <span class="kw">in</span> sky_300p.iterrows():</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    lat <span class="op">=</span> <span class="bu">float</span>(row[<span class="st">'location.latitude'</span>])</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    lng <span class="op">=</span> <span class="bu">float</span>(row[<span class="st">'location.longitude'</span>])</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> row[<span class="st">'name'</span>]</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    folium.Marker(location<span class="op">=</span>[lat, lng], popup<span class="op">=</span>name).add_to(fg_300p)</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>fg_100.add_to(m)</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>fg_101_150.add_to(m)</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>fg_151_200.add_to(m)</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>fg_200_300.add_to(m)</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>fg_300p.add_to(m)</span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>folium.LayerControl().add_to(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-error">
+<pre><code>NameError: name 'folium' is not defined</code></pre>
+</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> folium.Map(location<span class="op">=</span>[sky[<span class="st">'location.latitude'</span>].astype(<span class="bu">float</span>).mean(), sky[<span class="st">'location.longitude'</span>].astype(<span class="bu">float</span>).mean()], zoom_start<span class="op">=</span><span class="dv">6</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>fg_100 <span class="op">=</span> folium.FeatureGroup(name<span class="op">=</span><span class="st">"100m or less"</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>fg_101_150 <span class="op">=</span> folium.FeatureGroup(name<span class="op">=</span><span class="st">"101m - 150m"</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>fg_151_200 <span class="op">=</span> folium.FeatureGroup(name<span class="op">=</span><span class="st">"151m - 200m"</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>fg_200_300 <span class="op">=</span> folium.FeatureGroup(name<span class="op">=</span><span class="st">"201m - 300m"</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>fg_300p <span class="op">=</span> folium.FeatureGroup(name<span class="op">=</span><span class="st">"Over 300m"</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, row <span class="kw">in</span> sky_100.iterrows():</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    lat <span class="op">=</span> <span class="bu">float</span>(row[<span class="st">'location.latitude'</span>])</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    lng <span class="op">=</span> <span class="bu">float</span>(row[<span class="st">'location.longitude'</span>])</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> row[<span class="st">'name'</span>]</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    folium.Marker(location<span class="op">=</span>[lat, lng],popup<span class="op">=</span>name).add_to(fg_100)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, row <span class="kw">in</span> sky_101_150.iterrows():</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    lat <span class="op">=</span> <span class="bu">float</span>(row[<span class="st">'location.latitude'</span>])</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    lng <span class="op">=</span> <span class="bu">float</span>(row[<span class="st">'location.longitude'</span>])</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> row[<span class="st">'name'</span>]</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    folium.Marker(location<span class="op">=</span>[lat, lng],popup<span class="op">=</span>name).add_to(fg_101_150)</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, row <span class="kw">in</span> sky_151_200.iterrows():</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    lat <span class="op">=</span> <span class="bu">float</span>(row[<span class="st">'location.latitude'</span>])</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    lng <span class="op">=</span> <span class="bu">float</span>(row[<span class="st">'location.longitude'</span>])</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> row[<span class="st">'name'</span>]</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    folium.Marker(location<span class="op">=</span>[lat, lng],popup<span class="op">=</span>name).add_to(fg_151_200)</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, row <span class="kw">in</span> sky_200_300.iterrows():</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    lat <span class="op">=</span> <span class="bu">float</span>(row[<span class="st">'location.latitude'</span>])</span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    lng <span class="op">=</span> <span class="bu">float</span>(row[<span class="st">'location.longitude'</span>])</span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> row[<span class="st">'name'</span>]</span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    folium.Marker(location<span class="op">=</span>[lat, lng], popup<span class="op">=</span>name).add_to(fg_200_300)</span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, row <span class="kw">in</span> sky_300p.iterrows():</span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    lat <span class="op">=</span> <span class="bu">float</span>(row[<span class="st">'location.latitude'</span>])</span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>    lng <span class="op">=</span> <span class="bu">float</span>(row[<span class="st">'location.longitude'</span>])</span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> row[<span class="st">'name'</span>]</span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>    folium.Marker(location<span class="op">=</span>[lat, lng], popup<span class="op">=</span>name).add_to(fg_300p)</span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>fg_100.add_to(m)</span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>fg_101_150.add_to(m)</span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>fg_151_200.add_to(m)</span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>fg_200_300.add_to(m)</span>
-<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>fg_300p.add_to(m)</span>
-<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>folium.LayerControl().add_to(m)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p><strong>Figure 1.</strong> Map of all the skyscrapers in the U.S (including Hawaii and Alaska). Layers are separated by height in meters, and name of the building is included in the pop up.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sky[<span class="st">'statistics.height'</span>].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sky[<span class="st">'statistics.height'</span>].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sky.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sky.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>material<span class="op">=</span> sky_og[<span class="st">'material'</span>].value_counts()</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>material.plot(kind<span class="op">=</span><span class="st">'bar'</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>material<span class="op">=</span> sky_og[<span class="st">'material'</span>].value_counts()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>material.plot(kind<span class="op">=</span><span class="st">'bar'</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p><strong>Figure 2.</strong> The counts of the number of skyscrapers built with the respective materials.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>height <span class="op">=</span> pd.DataFrame({<span class="st">'height'</span>: sky[<span class="st">'statistics.height'</span>], <span class="st">'index'</span>: sky.index})</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>height.plot(kind<span class="op">=</span><span class="st">'scatter'</span>, x<span class="op">=</span><span class="st">'index'</span>, y<span class="op">=</span><span class="st">'height'</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Skyscraper Heights'</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Height (m)'</span>)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>height <span class="op">=</span> pd.DataFrame({<span class="st">'height'</span>: sky[<span class="st">'statistics.height'</span>], <span class="st">'index'</span>: sky.index})</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>height.plot(kind<span class="op">=</span><span class="st">'scatter'</span>, x<span class="op">=</span><span class="st">'index'</span>, y<span class="op">=</span><span class="st">'height'</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Skyscraper Heights'</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Height (m)'</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p><strong>Figure 3.</strong> The distribution of skyscraper heights.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>cities <span class="op">=</span> sky[<span class="st">'location.city'</span>].value_counts()</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>cities.plot(kind<span class="op">=</span><span class="st">'bar'</span>, width<span class="op">=</span><span class="fl">1.2</span>, figsize<span class="op">=</span>(<span class="dv">20</span>,<span class="dv">3</span>))</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>cities <span class="op">=</span> sky[<span class="st">'location.city'</span>].value_counts()</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>cities.plot(kind<span class="op">=</span><span class="st">'bar'</span>, width<span class="op">=</span><span class="fl">1.2</span>, figsize<span class="op">=</span>(<span class="dv">20</span>,<span class="dv">3</span>))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p><strong>Figure 4.</strong> The number of skyscrapers in each city.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>city_counts <span class="op">=</span> sky.groupby(<span class="st">'location.city'</span>)[<span class="st">'location.city'</span>].count()</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>cities_30 <span class="op">=</span> city_counts.nlargest(<span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>city_counts <span class="op">=</span> sky.groupby(<span class="st">'location.city'</span>)[<span class="st">'location.city'</span>].count()</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>cities_30 <span class="op">=</span> city_counts.nlargest(<span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell" data-scrolled="true">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>cities_dem.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>cities_dem.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p><strong>3.2 - Analysis</strong></p>
+<pre class="{r}"><code>#| code-fold: true
+#| code-summary: "Show the code"</code></pre>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sky_mat <span class="op">=</span> sky.loc[(sky[<span class="st">'status.completed.year'</span>] <span class="op">!=</span> <span class="dv">0</span>)]</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>sky_mat.plot(y <span class="op">=</span> <span class="st">'material'</span>,x<span class="op">=</span><span class="st">'status.completed.year'</span>,kind<span class="op">=</span><span class="st">'scatter'</span>,color<span class="op">=</span><span class="st">'cadetblue'</span>,s<span class="op">=</span><span class="dv">5</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">7</span>))</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>sky_mat.set_ylabel<span class="op">=</span>(<span class="st">'Year Completed'</span>)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>sky_mat.set_xlabel<span class="op">=</span>(<span class="st">'Material'</span>)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>sky.set_title<span class="op">=</span>(<span class="st">'title'</span>)</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Material'</span>,fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Year Completed'</span>,fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'The Material of Skyscrapers Built Throughout the Years'</span>,fontsize<span class="op">=</span><span class="dv">14</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sky_mat <span class="op">=</span> sky.loc[(sky[<span class="st">'status.completed.year'</span>] <span class="op">!=</span> <span class="dv">0</span>)]</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>sky_mat.plot(y <span class="op">=</span> <span class="st">'material'</span>,x<span class="op">=</span><span class="st">'status.completed.year'</span>,kind<span class="op">=</span><span class="st">'scatter'</span>,color<span class="op">=</span><span class="st">'cadetblue'</span>,s<span class="op">=</span><span class="dv">5</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">7</span>))</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>sky_mat.set_ylabel<span class="op">=</span>(<span class="st">'Year Completed'</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>sky_mat.set_xlabel<span class="op">=</span>(<span class="st">'Material'</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>sky.set_title<span class="op">=</span>(<span class="st">'title'</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Material'</span>,fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Year Completed'</span>,fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'The Material of Skyscrapers Built Throughout the Years'</span>,fontsize<span class="op">=</span><span class="dv">14</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p><strong>Figure 5.</strong> The changes in skyscraper materials throughout time, with the year completed as the date.</p>
+<pre class="{r}"><code>#| code-fold: true
+#| code-summary: "Show the code"</code></pre>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>sky.plot(column<span class="op">=</span><span class="st">'statistics.height'</span>, by<span class="op">=</span><span class="st">'material'</span>,ax<span class="op">=</span>ax, kind<span class="op">=</span><span class="st">'box'</span>)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Material'</span>)</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Height'</span>)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>sky.plot(column<span class="op">=</span><span class="st">'statistics.height'</span>, by<span class="op">=</span><span class="st">'material'</span>,ax<span class="op">=</span>ax, kind<span class="op">=</span><span class="st">'box'</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Material'</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Height'</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p><strong>Figure 6.</strong> The height distribution of skyscrapers with different materials shown in a box plot.</p>
+<pre class="{r}"><code>#| code-fold: true
+#| code-summary: "Show the code"</code></pre>
 <div class="cell" data-scrolled="true">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>cities_df <span class="op">=</span> pd.DataFrame(cities_30.items(), columns<span class="op">=</span>[<span class="st">'City'</span>, <span class="st">'Skyscraper'</span>])</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>city_sky <span class="op">=</span> pd.merge(cities_dem, cities_df, on<span class="op">=</span><span class="st">'City'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>cities_df <span class="op">=</span> pd.DataFrame(cities_30.items(), columns<span class="op">=</span>[<span class="st">'City'</span>, <span class="st">'Skyscraper'</span>])</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>city_sky <span class="op">=</span> pd.merge(cities_dem, cities_df, on<span class="op">=</span><span class="st">'City'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> city_sky[<span class="st">'Population per square mile, 2020'</span>].values</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> city_sky[<span class="st">'Skyscraper'</span>].values</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y)</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'City Population per square Mile vs. Skyscrapers'</span>)</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Population Density'</span>)</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> city_sky.iterrows():</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    city <span class="op">=</span> row[<span class="st">'City'</span>]</span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> row[<span class="st">'Population per square mile, 2020'</span>]</span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    y2 <span class="op">=</span> row[<span class="st">'Skyscraper'</span>]</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    ax.annotate(city, xy<span class="op">=</span>(x1, y2), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>)</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.poly1d(z)</span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>plt.plot(x, p(x), color<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> city_sky[<span class="st">'Population per square mile, 2020'</span>].values</span>
-<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> city_sky[<span class="st">'Skyscraper'</span>].values</span>
-<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y)</span>
-<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'City Population per square Mile vs. Skyscrapers (Zoomed)'</span>)</span>
-<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Population Density'</span>)</span>
-<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
-<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> city_sky.iterrows():</span>
-<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>    city <span class="op">=</span> row[<span class="st">'City'</span>]</span>
-<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> row[<span class="st">'Population per square mile, 2020'</span>]</span>
-<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>    y2 <span class="op">=</span> row[<span class="st">'Skyscraper'</span>]</span>
-<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>    ax.annotate(city, xy<span class="op">=</span>(x1, y2), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
-<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>)</span>
-<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.poly1d(z)</span>
-<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>plt.plot(x, p(x), color<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="dv">0</span>, <span class="dv">25000</span>])</span>
-<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">10</span>, <span class="dv">70</span>])</span>
-<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a>slope, intercept, rvalue, pvalue, stderr <span class="op">=</span> linregress(x, y)</span>
-<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a>plt.plot(x, slope<span class="op">*</span>x <span class="op">+</span> intercept, color<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a>r_squared <span class="op">=</span> rvalue<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(r_squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Figure 7.</strong> Scatter plot of population density and the number of skyscrapers in a city (R-squared: 0.35)</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> city_sky[<span class="st">'Mean travel time to work (minutes), workers age 16 years+, 2017-2021'</span>].values</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> city_sky[<span class="st">'Skyscraper'</span>].values</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y, color<span class="op">=</span><span class="st">'peru'</span>)</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Mean Travel Time to Work vs. Skyscrapers'</span>)</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Mean travel time to work (minutes)'</span>)</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> city_sky.iterrows():</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    city <span class="op">=</span> row[<span class="st">'City'</span>]</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> row[<span class="st">'Mean travel time to work (minutes), workers age 16 years+, 2017-2021'</span>]</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    y2 <span class="op">=</span> row[<span class="st">'Skyscraper'</span>]</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    ax.annotate(city, xy<span class="op">=</span>(x1, y2), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>)</span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.poly1d(z)</span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>plt.plot(x, p(x), color<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> city_sky[<span class="st">'Mean travel time to work (minutes), workers age 16 years+, 2017-2021'</span>].values</span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> city_sky[<span class="st">'Skyscraper'</span>].values</span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y, color<span class="op">=</span><span class="st">'peru'</span>)</span>
-<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Mean Travel Time to Work vs. Skyscrapers (Zoomed)'</span>)</span>
-<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Mean travel time to work (minutes)'</span>)</span>
-<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
-<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> city_sky.iterrows():</span>
-<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>    city <span class="op">=</span> row[<span class="st">'City'</span>]</span>
-<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> row[<span class="st">'Mean travel time to work (minutes), workers age 16 years+, 2017-2021'</span>]</span>
-<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>    y2 <span class="op">=</span> row[<span class="st">'Skyscraper'</span>]</span>
-<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>    ax.annotate(city, xy<span class="op">=</span>(x1, y2), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
-<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>)</span>
-<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.poly1d(z)</span>
-<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>plt.plot(x, p(x), color<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="dv">15</span>, <span class="dv">40</span>])</span>
-<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">10</span>, <span class="dv">70</span>])</span>
-<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a>slope, intercept, rvalue, pvalue, stderr <span class="op">=</span> linregress(x, y)</span>
-<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a>plt.plot(x, slope<span class="op">*</span>x <span class="op">+</span> intercept, color<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a>r_squared <span class="op">=</span> rvalue<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(r_squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Figure 8.</strong> Scatter plot of the mean travel time to work, in minutes, and the number of skyscrapers in a city (R-squared: ~0.4)</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> city_sky[ <span class="st">'Population, Census, April 1, 2020'</span>].values</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> city_sky[<span class="st">'Skyscraper'</span>].values</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y, color<span class="op">=</span><span class="st">'teal'</span>)</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Population vs. Skyscrapers'</span>)</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Population (2020 Census in millions)'</span>)</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> city_sky.iterrows():</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    city <span class="op">=</span> row[<span class="st">'City'</span>]</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> row[ <span class="st">'Population, Census, April 1, 2020'</span>]</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    y2 <span class="op">=</span> row[<span class="st">'Skyscraper'</span>]</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    ax.annotate(city, xy<span class="op">=</span>(x1, y2), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>)</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.poly1d(z)</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>plt.plot(x, p(x), color<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> city_sky[ <span class="st">'Population, Census, April 1, 2020'</span>].values</span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> city_sky[<span class="st">'Skyscraper'</span>].values</span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y, color<span class="op">=</span><span class="st">'teal'</span>)</span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Population vs. Skyscrapers (Zoomed)'</span>)</span>
-<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Population (2020 Census in millions)'</span>)</span>
-<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
-<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> city_sky.iterrows():</span>
-<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>    city <span class="op">=</span> row[<span class="st">'City'</span>]</span>
-<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> row[ <span class="st">'Population, Census, April 1, 2020'</span>]</span>
-<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>    y2 <span class="op">=</span> row[<span class="st">'Skyscraper'</span>]</span>
-<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>    ax.annotate(city, xy<span class="op">=</span>(x1, y2), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
-<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>)</span>
-<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.poly1d(z)</span>
-<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>plt.plot(x, p(x), color<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="dv">0</span>, <span class="fl">4e6</span>])</span>
-<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">0</span>, <span class="dv">80</span>])</span>
-<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a>slope, intercept, rvalue, pvalue, stderr <span class="op">=</span> linregress(x, y)</span>
-<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a>plt.plot(x, slope<span class="op">*</span>x <span class="op">+</span> intercept, color<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a>r_squared <span class="op">=</span> rvalue<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(r_squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Figure 9.</strong> Scatter plot of the population of a city and the number of skyscrapers in a city (R-squared: ~0.71)</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> city_sky[<span class="st">'Owner-occupied housing unit rate, 2017-2021'</span>].values</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> city_sky[<span class="st">'Skyscraper'</span>].values</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y, color<span class="op">=</span><span class="st">'teal'</span>)</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Owner occupied housing rate vs. Skyscrapers'</span>)</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Rate (%)'</span>)</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> city_sky.iterrows():</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    city <span class="op">=</span> row[<span class="st">'City'</span>]</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> row[<span class="st">'Owner-occupied housing unit rate, 2017-2021'</span>]</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    y2 <span class="op">=</span> row[<span class="st">'Skyscraper'</span>]</span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    ax.annotate(city, xy<span class="op">=</span>(x1, y2), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>)</span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.poly1d(z)</span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>plt.plot(x, p(x), color<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> city_sky[<span class="st">'Owner-occupied housing unit rate, 2017-2021'</span>].values</span>
-<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> city_sky[<span class="st">'Skyscraper'</span>].values</span>
-<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y, color<span class="op">=</span><span class="st">'teal'</span>)</span>
-<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Owner occupied housing rate vs. Skyscrapers (Zoomed)'</span>)</span>
-<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Rate (%)'</span>)</span>
-<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
-<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> city_sky.iterrows():</span>
-<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>    city <span class="op">=</span> row[<span class="st">'City'</span>]</span>
-<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> row[<span class="st">'Owner-occupied housing unit rate, 2017-2021'</span>]</span>
-<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>    y2 <span class="op">=</span> row[<span class="st">'Skyscraper'</span>]</span>
-<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a>    ax.annotate(city, xy<span class="op">=</span>(x1, y2), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
-<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>)</span>
-<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.poly1d(z)</span>
-<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>plt.plot(x, p(x), color<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="fl">0.25</span>, <span class="fl">0.65</span>])</span>
-<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">0</span>, <span class="dv">80</span>])</span>
-<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a>slope, intercept, rvalue, pvalue, stderr <span class="op">=</span> linregress(x, y)</span>
-<span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a>plt.plot(x, slope<span class="op">*</span>x <span class="op">+</span> intercept, color<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a>r_squared <span class="op">=</span> rvalue<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb22-42"><a href="#cb22-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-43"><a href="#cb22-43" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb22-44"><a href="#cb22-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-45"><a href="#cb22-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(r_squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Figure 10.</strong> Scatter plot of the owner occupied housing rate and the number of skyscrapers in a city (R-squared: ~0.072)</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> city_sky[<span class="st">'Median gross rent, 2017-2021'</span>].values</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> city_sky[<span class="st">'Skyscraper'</span>].values</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y, color<span class="op">=</span><span class="st">'olive'</span>)</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Median Gross Rent vs. Skyscrapers'</span>)</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Rent (U.S dollars)'</span>)</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> city_sky.iterrows():</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    city <span class="op">=</span> row[<span class="st">'City'</span>]</span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> row[<span class="st">'Median gross rent, 2017-2021'</span>]</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    y2 <span class="op">=</span> row[<span class="st">'Skyscraper'</span>]</span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>    ax.annotate(city, xy<span class="op">=</span>(x1, y2), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>)</span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.poly1d(z)</span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>plt.plot(x, p(x), color<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span>
-<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> city_sky[<span class="st">'Median gross rent, 2017-2021'</span>].values</span>
-<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> city_sky[<span class="st">'Skyscraper'</span>].values</span>
-<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y, color<span class="op">=</span><span class="st">'olive'</span>)</span>
-<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Median Gross Rent vs. Skyscrapers (Zoomed)'</span>)</span>
-<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Rent (U.S dollars)'</span>)</span>
-<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
-<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> city_sky.iterrows():</span>
-<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>    city <span class="op">=</span> row[<span class="st">'City'</span>]</span>
-<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> row[<span class="st">'Median gross rent, 2017-2021'</span>]</span>
-<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>    y2 <span class="op">=</span> row[<span class="st">'Skyscraper'</span>]</span>
-<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>    ax.annotate(city, xy<span class="op">=</span>(x1, y2), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
-<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>)</span>
-<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.poly1d(z)</span>
-<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a>plt.plot(x, p(x), color<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="dv">700</span>, <span class="dv">1500</span>])</span>
-<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">0</span>, <span class="dv">70</span>])</span>
-<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a>slope, intercept, rvalue, pvalue, stderr <span class="op">=</span> linregress(x, y)</span>
-<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a>plt.plot(x, slope<span class="op">*</span>x <span class="op">+</span> intercept, color<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a>r_squared <span class="op">=</span> rvalue<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb23-44"><a href="#cb23-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-45"><a href="#cb23-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(r_squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Figure 11.</strong> Scatter plot of the median gross rent, in U.S dollars, and the number of skyscrapers in a city (R-squared: ~0.027)</p>
-<div class="cell">
+<details>
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> city_sky[<span class="st">'Median household income (in 2021 dollars), 2017-2021'</span>].values</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> city_sky[<span class="st">'Population per square mile, 2020'</span>].values</span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> city_sky[<span class="st">'Skyscraper'</span>].values</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y, color<span class="op">=</span><span class="st">'mediumpurple'</span>)</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Median Household Income vs. Skyscrapers'</span>)</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Monthly Income (U.S dollars)'</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'City Population per square Mile vs. Skyscrapers'</span>)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Population Density'</span>)</span>
 <span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
 <span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> city_sky.iterrows():</span>
 <span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    city <span class="op">=</span> row[<span class="st">'City'</span>]</span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> row[<span class="st">'Median household income (in 2021 dollars), 2017-2021'</span>]</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> row[<span class="st">'Population per square mile, 2020'</span>]</span>
 <span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    y2 <span class="op">=</span> row[<span class="st">'Skyscraper'</span>]</span>
 <span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    ax.annotate(city, xy<span class="op">=</span>(x1, y2), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
 <span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>)</span>
@@ -646,30 +446,297 @@ import folium</code></pre>
 <span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span>
 <span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> city_sky[<span class="st">'Median household income (in 2021 dollars), 2017-2021'</span>].values</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> city_sky[<span class="st">'Population per square mile, 2020'</span>].values</span>
 <span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> city_sky[<span class="st">'Skyscraper'</span>].values</span>
-<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y, color<span class="op">=</span><span class="st">'mediumpurple'</span>)</span>
-<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Median Household Income vs. Skyscrapers (Zoomed)'</span>)</span>
-<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Monthly Income (U.S dollars)'</span>)</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y)</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'City Population per square Mile vs. Skyscrapers (Zoomed)'</span>)</span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Population Density'</span>)</span>
 <span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
 <span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> city_sky.iterrows():</span>
 <span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>    city <span class="op">=</span> row[<span class="st">'City'</span>]</span>
-<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> row[<span class="st">'Median household income (in 2021 dollars), 2017-2021'</span>]</span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> row[<span class="st">'Population per square mile, 2020'</span>]</span>
 <span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>    y2 <span class="op">=</span> row[<span class="st">'Skyscraper'</span>]</span>
 <span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>    ax.annotate(city, xy<span class="op">=</span>(x1, y2), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
 <span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>)</span>
 <span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.poly1d(z)</span>
 <span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>plt.plot(x, p(x), color<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="dv">30000</span>, <span class="dv">100000</span>])</span>
-<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">0</span>, <span class="dv">80</span>])</span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="dv">0</span>, <span class="dv">25000</span>])</span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">10</span>, <span class="dv">70</span>])</span>
 <span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a>slope, intercept, rvalue, pvalue, stderr <span class="op">=</span> linregress(x, y)</span>
-<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a>plt.plot(x, slope<span class="op">*</span>x <span class="op">+</span> intercept, color<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a>r_squared <span class="op">=</span> rvalue<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(r_squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a>slope, intercept, rvalue, pvalue, stderr <span class="op">=</span> linregress(x, y)</span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a>plt.plot(x, slope<span class="op">*</span>x <span class="op">+</span> intercept, color<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a>r_squared <span class="op">=</span> rvalue<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(r_squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>Figure 7.</strong> Scatter plot of population density and the number of skyscrapers in a city (R-squared: 0.35)</p>
+<pre class="{r}"><code>#| code-fold: true
+#| code-summary: "Show the code"</code></pre>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> city_sky[<span class="st">'Mean travel time to work (minutes), workers age 16 years+, 2017-2021'</span>].values</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> city_sky[<span class="st">'Skyscraper'</span>].values</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y, color<span class="op">=</span><span class="st">'peru'</span>)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Mean Travel Time to Work vs. Skyscrapers'</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Mean travel time to work (minutes)'</span>)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> city_sky.iterrows():</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    city <span class="op">=</span> row[<span class="st">'City'</span>]</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> row[<span class="st">'Mean travel time to work (minutes), workers age 16 years+, 2017-2021'</span>]</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    y2 <span class="op">=</span> row[<span class="st">'Skyscraper'</span>]</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>    ax.annotate(city, xy<span class="op">=</span>(x1, y2), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>)</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.poly1d(z)</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>plt.plot(x, p(x), color<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> city_sky[<span class="st">'Mean travel time to work (minutes), workers age 16 years+, 2017-2021'</span>].values</span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> city_sky[<span class="st">'Skyscraper'</span>].values</span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y, color<span class="op">=</span><span class="st">'peru'</span>)</span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Mean Travel Time to Work vs. Skyscrapers (Zoomed)'</span>)</span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Mean travel time to work (minutes)'</span>)</span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> city_sky.iterrows():</span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>    city <span class="op">=</span> row[<span class="st">'City'</span>]</span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> row[<span class="st">'Mean travel time to work (minutes), workers age 16 years+, 2017-2021'</span>]</span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>    y2 <span class="op">=</span> row[<span class="st">'Skyscraper'</span>]</span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>    ax.annotate(city, xy<span class="op">=</span>(x1, y2), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>)</span>
+<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.poly1d(z)</span>
+<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>plt.plot(x, p(x), color<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="dv">15</span>, <span class="dv">40</span>])</span>
+<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">10</span>, <span class="dv">70</span>])</span>
+<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>slope, intercept, rvalue, pvalue, stderr <span class="op">=</span> linregress(x, y)</span>
+<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a>plt.plot(x, slope<span class="op">*</span>x <span class="op">+</span> intercept, color<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a>r_squared <span class="op">=</span> rvalue<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb26-44"><a href="#cb26-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(r_squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>Figure 8.</strong> Scatter plot of the mean travel time to work, in minutes, and the number of skyscrapers in a city (R-squared: ~0.4)</p>
+<pre class="{r}"><code>#| code-fold: true
+#| code-summary: "Show the code"</code></pre>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> city_sky[ <span class="st">'Population, Census, April 1, 2020'</span>].values</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> city_sky[<span class="st">'Skyscraper'</span>].values</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y, color<span class="op">=</span><span class="st">'teal'</span>)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Population vs. Skyscrapers'</span>)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Population (2020 Census in millions)'</span>)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> city_sky.iterrows():</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    city <span class="op">=</span> row[<span class="st">'City'</span>]</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> row[ <span class="st">'Population, Census, April 1, 2020'</span>]</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>    y2 <span class="op">=</span> row[<span class="st">'Skyscraper'</span>]</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>    ax.annotate(city, xy<span class="op">=</span>(x1, y2), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>)</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.poly1d(z)</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>plt.plot(x, p(x), color<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> city_sky[ <span class="st">'Population, Census, April 1, 2020'</span>].values</span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> city_sky[<span class="st">'Skyscraper'</span>].values</span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y, color<span class="op">=</span><span class="st">'teal'</span>)</span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Population vs. Skyscrapers (Zoomed)'</span>)</span>
+<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Population (2020 Census in millions)'</span>)</span>
+<span id="cb28-27"><a href="#cb28-27" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
+<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> city_sky.iterrows():</span>
+<span id="cb28-29"><a href="#cb28-29" aria-hidden="true" tabindex="-1"></a>    city <span class="op">=</span> row[<span class="st">'City'</span>]</span>
+<span id="cb28-30"><a href="#cb28-30" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> row[ <span class="st">'Population, Census, April 1, 2020'</span>]</span>
+<span id="cb28-31"><a href="#cb28-31" aria-hidden="true" tabindex="-1"></a>    y2 <span class="op">=</span> row[<span class="st">'Skyscraper'</span>]</span>
+<span id="cb28-32"><a href="#cb28-32" aria-hidden="true" tabindex="-1"></a>    ax.annotate(city, xy<span class="op">=</span>(x1, y2), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
+<span id="cb28-33"><a href="#cb28-33" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>)</span>
+<span id="cb28-34"><a href="#cb28-34" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.poly1d(z)</span>
+<span id="cb28-35"><a href="#cb28-35" aria-hidden="true" tabindex="-1"></a>plt.plot(x, p(x), color<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb28-36"><a href="#cb28-36" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="dv">0</span>, <span class="fl">4e6</span>])</span>
+<span id="cb28-37"><a href="#cb28-37" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">0</span>, <span class="dv">80</span>])</span>
+<span id="cb28-38"><a href="#cb28-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-39"><a href="#cb28-39" aria-hidden="true" tabindex="-1"></a>slope, intercept, rvalue, pvalue, stderr <span class="op">=</span> linregress(x, y)</span>
+<span id="cb28-40"><a href="#cb28-40" aria-hidden="true" tabindex="-1"></a>plt.plot(x, slope<span class="op">*</span>x <span class="op">+</span> intercept, color<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb28-41"><a href="#cb28-41" aria-hidden="true" tabindex="-1"></a>r_squared <span class="op">=</span> rvalue<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb28-42"><a href="#cb28-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-43"><a href="#cb28-43" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb28-44"><a href="#cb28-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-45"><a href="#cb28-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(r_squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>Figure 9.</strong> Scatter plot of the population of a city and the number of skyscrapers in a city (R-squared: ~0.71)</p>
+<pre class="{r}"><code>#| code-fold: true
+#| code-summary: "Show the code"</code></pre>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> city_sky[<span class="st">'Owner-occupied housing unit rate, 2017-2021'</span>].values</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> city_sky[<span class="st">'Skyscraper'</span>].values</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y, color<span class="op">=</span><span class="st">'teal'</span>)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Owner occupied housing rate vs. Skyscrapers'</span>)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Rate (%)'</span>)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> city_sky.iterrows():</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    city <span class="op">=</span> row[<span class="st">'City'</span>]</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> row[<span class="st">'Owner-occupied housing unit rate, 2017-2021'</span>]</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>    y2 <span class="op">=</span> row[<span class="st">'Skyscraper'</span>]</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>    ax.annotate(city, xy<span class="op">=</span>(x1, y2), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>)</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.poly1d(z)</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>plt.plot(x, p(x), color<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> city_sky[<span class="st">'Owner-occupied housing unit rate, 2017-2021'</span>].values</span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> city_sky[<span class="st">'Skyscraper'</span>].values</span>
+<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y, color<span class="op">=</span><span class="st">'teal'</span>)</span>
+<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Owner occupied housing rate vs. Skyscrapers (Zoomed)'</span>)</span>
+<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Rate (%)'</span>)</span>
+<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
+<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> city_sky.iterrows():</span>
+<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a>    city <span class="op">=</span> row[<span class="st">'City'</span>]</span>
+<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> row[<span class="st">'Owner-occupied housing unit rate, 2017-2021'</span>]</span>
+<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a>    y2 <span class="op">=</span> row[<span class="st">'Skyscraper'</span>]</span>
+<span id="cb30-32"><a href="#cb30-32" aria-hidden="true" tabindex="-1"></a>    ax.annotate(city, xy<span class="op">=</span>(x1, y2), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
+<span id="cb30-33"><a href="#cb30-33" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>)</span>
+<span id="cb30-34"><a href="#cb30-34" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.poly1d(z)</span>
+<span id="cb30-35"><a href="#cb30-35" aria-hidden="true" tabindex="-1"></a>plt.plot(x, p(x), color<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb30-36"><a href="#cb30-36" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="fl">0.25</span>, <span class="fl">0.65</span>])</span>
+<span id="cb30-37"><a href="#cb30-37" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">0</span>, <span class="dv">80</span>])</span>
+<span id="cb30-38"><a href="#cb30-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-39"><a href="#cb30-39" aria-hidden="true" tabindex="-1"></a>slope, intercept, rvalue, pvalue, stderr <span class="op">=</span> linregress(x, y)</span>
+<span id="cb30-40"><a href="#cb30-40" aria-hidden="true" tabindex="-1"></a>plt.plot(x, slope<span class="op">*</span>x <span class="op">+</span> intercept, color<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb30-41"><a href="#cb30-41" aria-hidden="true" tabindex="-1"></a>r_squared <span class="op">=</span> rvalue<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb30-42"><a href="#cb30-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-43"><a href="#cb30-43" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb30-44"><a href="#cb30-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-45"><a href="#cb30-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(r_squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>Figure 10.</strong> Scatter plot of the owner occupied housing rate and the number of skyscrapers in a city (R-squared: ~0.072)</p>
+<pre class="{r}"><code>#| code-fold: true
+#| code-summary: "Show the code"</code></pre>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> city_sky[<span class="st">'Median gross rent, 2017-2021'</span>].values</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> city_sky[<span class="st">'Skyscraper'</span>].values</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y, color<span class="op">=</span><span class="st">'olive'</span>)</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Median Gross Rent vs. Skyscrapers'</span>)</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Rent (U.S dollars)'</span>)</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> city_sky.iterrows():</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    city <span class="op">=</span> row[<span class="st">'City'</span>]</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> row[<span class="st">'Median gross rent, 2017-2021'</span>]</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    y2 <span class="op">=</span> row[<span class="st">'Skyscraper'</span>]</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>    ax.annotate(city, xy<span class="op">=</span>(x1, y2), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>)</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.poly1d(z)</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>plt.plot(x, p(x), color<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> city_sky[<span class="st">'Median gross rent, 2017-2021'</span>].values</span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> city_sky[<span class="st">'Skyscraper'</span>].values</span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y, color<span class="op">=</span><span class="st">'olive'</span>)</span>
+<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Median Gross Rent vs. Skyscrapers (Zoomed)'</span>)</span>
+<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Rent (U.S dollars)'</span>)</span>
+<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
+<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> city_sky.iterrows():</span>
+<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a>    city <span class="op">=</span> row[<span class="st">'City'</span>]</span>
+<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> row[<span class="st">'Median gross rent, 2017-2021'</span>]</span>
+<span id="cb32-31"><a href="#cb32-31" aria-hidden="true" tabindex="-1"></a>    y2 <span class="op">=</span> row[<span class="st">'Skyscraper'</span>]</span>
+<span id="cb32-32"><a href="#cb32-32" aria-hidden="true" tabindex="-1"></a>    ax.annotate(city, xy<span class="op">=</span>(x1, y2), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
+<span id="cb32-33"><a href="#cb32-33" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>)</span>
+<span id="cb32-34"><a href="#cb32-34" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.poly1d(z)</span>
+<span id="cb32-35"><a href="#cb32-35" aria-hidden="true" tabindex="-1"></a>plt.plot(x, p(x), color<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb32-36"><a href="#cb32-36" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="dv">700</span>, <span class="dv">1500</span>])</span>
+<span id="cb32-37"><a href="#cb32-37" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">0</span>, <span class="dv">70</span>])</span>
+<span id="cb32-38"><a href="#cb32-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-39"><a href="#cb32-39" aria-hidden="true" tabindex="-1"></a>slope, intercept, rvalue, pvalue, stderr <span class="op">=</span> linregress(x, y)</span>
+<span id="cb32-40"><a href="#cb32-40" aria-hidden="true" tabindex="-1"></a>plt.plot(x, slope<span class="op">*</span>x <span class="op">+</span> intercept, color<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb32-41"><a href="#cb32-41" aria-hidden="true" tabindex="-1"></a>r_squared <span class="op">=</span> rvalue<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb32-42"><a href="#cb32-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-43"><a href="#cb32-43" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb32-44"><a href="#cb32-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-45"><a href="#cb32-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(r_squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>Figure 11.</strong> Scatter plot of the median gross rent, in U.S dollars, and the number of skyscrapers in a city (R-squared: ~0.027)</p>
+<pre class="{r}"><code>#| code-fold: true
+#| code-summary: "Show the code"</code></pre>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> city_sky[<span class="st">'Median household income (in 2021 dollars), 2017-2021'</span>].values</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> city_sky[<span class="st">'Skyscraper'</span>].values</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y, color<span class="op">=</span><span class="st">'mediumpurple'</span>)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Median Household Income vs. Skyscrapers'</span>)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Monthly Income (U.S dollars)'</span>)</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> city_sky.iterrows():</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>    city <span class="op">=</span> row[<span class="st">'City'</span>]</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> row[<span class="st">'Median household income (in 2021 dollars), 2017-2021'</span>]</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>    y2 <span class="op">=</span> row[<span class="st">'Skyscraper'</span>]</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>    ax.annotate(city, xy<span class="op">=</span>(x1, y2), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>)</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.poly1d(z)</span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>plt.plot(x, p(x), color<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> city_sky[<span class="st">'Median household income (in 2021 dollars), 2017-2021'</span>].values</span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> city_sky[<span class="st">'Skyscraper'</span>].values</span>
+<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y, color<span class="op">=</span><span class="st">'mediumpurple'</span>)</span>
+<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Median Household Income vs. Skyscrapers (Zoomed)'</span>)</span>
+<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Monthly Income (U.S dollars)'</span>)</span>
+<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Skyscrapers'</span>)</span>
+<span id="cb34-28"><a href="#cb34-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> city_sky.iterrows():</span>
+<span id="cb34-29"><a href="#cb34-29" aria-hidden="true" tabindex="-1"></a>    city <span class="op">=</span> row[<span class="st">'City'</span>]</span>
+<span id="cb34-30"><a href="#cb34-30" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> row[<span class="st">'Median household income (in 2021 dollars), 2017-2021'</span>]</span>
+<span id="cb34-31"><a href="#cb34-31" aria-hidden="true" tabindex="-1"></a>    y2 <span class="op">=</span> row[<span class="st">'Skyscraper'</span>]</span>
+<span id="cb34-32"><a href="#cb34-32" aria-hidden="true" tabindex="-1"></a>    ax.annotate(city, xy<span class="op">=</span>(x1, y2), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
+<span id="cb34-33"><a href="#cb34-33" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>)</span>
+<span id="cb34-34"><a href="#cb34-34" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.poly1d(z)</span>
+<span id="cb34-35"><a href="#cb34-35" aria-hidden="true" tabindex="-1"></a>plt.plot(x, p(x), color<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb34-36"><a href="#cb34-36" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="dv">30000</span>, <span class="dv">100000</span>])</span>
+<span id="cb34-37"><a href="#cb34-37" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">0</span>, <span class="dv">80</span>])</span>
+<span id="cb34-38"><a href="#cb34-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-39"><a href="#cb34-39" aria-hidden="true" tabindex="-1"></a>slope, intercept, rvalue, pvalue, stderr <span class="op">=</span> linregress(x, y)</span>
+<span id="cb34-40"><a href="#cb34-40" aria-hidden="true" tabindex="-1"></a>plt.plot(x, slope<span class="op">*</span>x <span class="op">+</span> intercept, color<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb34-41"><a href="#cb34-41" aria-hidden="true" tabindex="-1"></a>r_squared <span class="op">=</span> rvalue<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb34-42"><a href="#cb34-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-43"><a href="#cb34-43" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb34-44"><a href="#cb34-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-45"><a href="#cb34-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(r_squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p><strong>Figure 12.</strong> Scatter plot of the median monthly household income, in U.S dollars, and the number of skyscrapers in a city (R-squared: ~0.013)</p>
 <table class="table">
@@ -714,6 +781,7 @@ import folium</code></pre>
 </tbody>
 </table>
 <p><strong>Table 1.</strong> Summary of the analysis with the variables of interest (Trends indicated as positive/negative)</p>
+</section>
 <section id="discussion" class="level1">
 <h1>4. Discussion</h1>
 <p>Skyscraper materials have become increasingly dominated by concrete and steel structures (Figure 5). In recent decades, there has been an increase in a mix of using both concrete and steel, and also composite materials. Masonry and precast were used sporadically from the mid-1800s to 1900s, respectively, but have phased out as steel skyscrapers took over. This could be due to that masonry and precast materials do not result in high rises. When compared to other materials, the average height of masonry and precast materials is at the lowest (Figure 6). The tallest buildings are composite, and a mix of steel and concrete. This could be the main reason why many skyscrapers are built with these materials, to support higher buildings.</p>
